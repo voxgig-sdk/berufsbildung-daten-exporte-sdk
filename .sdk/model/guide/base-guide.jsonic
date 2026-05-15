@@ -1,0 +1,17 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: berufsbildung: {
+    path: "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}": {
+      op: load: method: *GET
+    }
+    path: "/explore/v2.1/catalog/datasets/dek-abb-1/records": {
+      op: list: method: *GET
+    }
+  }
+
+}

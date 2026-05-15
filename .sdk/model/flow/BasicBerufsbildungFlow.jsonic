@@ -1,0 +1,44 @@
+# BasicBerufsbildungFlow
+
+main: kit: flow: BasicBerufsbildungFlow:
+{
+  entity: "berufsbildung",
+  kind: "basic",
+  name: "BasicBerufsbildungFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "berufsbildung_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "berufsbildung_ref01",
+        srcdatavar: "berufsbildung_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "berufsbildung01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-berufsbildung_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBerufsbildungFlow"
+}

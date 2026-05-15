@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "berufsbildung": {
+      "BERUFSBILDUNG00": {
+        "record": {},
+        "format": "FORMAT01"
+      },
+      "BERUFSBILDUNG01": {
+        "record": {},
+        "format": "FORMAT01"
+      },
+      "BERUFSBILDUNG02": {
+        "record": {},
+        "format": "FORMAT01"
+      }
+    }
+  },
+  "new": {
+    "berufsbildung": {
+      "berufsbildung_ref01": {
+        "record": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Berufsbildung Daten Exporte",
+    "description": "API zur Exportierung von Daten zu Lehrverträgen und Abschlüssen der Berufsbildung seit 2017, einschließlich Anzahl der Lehrverträge, neu registrierten Lehrverträgen und Abschlüssen der Qualifikationsverfahren nach Ausbildungsfeldern. Der Datensatz enthält die Totale Anzahl der Lehrverträge, sowie die neu registrierten Lehrverträge des entsprechenden Jahres. Aufgeführt sind auch die Abschlüsse der Qualifikationsverfahren (Lehrabschlussprüfungen) nach Ausbildungsfeldern.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Open Data Kanton Thurgau",
+      "url": "https://data.tg.ch"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://data.tg.ch/api",
+      "description": "Production API Server"
+    }
+  ],
+  "paths": {
+    "/explore/v2.1/catalog/datasets/dek-abb-1/records": {
+      "get": {
+        "summary": "Abrufen von Berufsbildungsdaten",
+        "description": "Ruft Datensätze zu Lehrverträgen und Abschlüssen der Berufsbildung seit 2017 ab. Die Daten enthalten Totale Anzahl der Lehrverträge, neu registrierte Lehrverträge, Abschlüsse der Qualifikationsverfahren nach Ausbildungsfeldern, sowie Informationen zu Ausbildungsverhältnissen, Repetenten und ausgestellten Fähigkeits- und Attestausweisen.",
+        "operationId": "getBerufsbildungRecords",
+        "tags": [
+          "Berufsbildung"
+        ],
+        "parameters": [
+          {
+            "name": "select",
+            "in": "query",
+            "description": "Liste der zurückzugebenden Felder, durch Komma getrennt",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "description": "Filterbedingung für die Abfrage",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximale Anzahl der zurückzugebenden Datensätze",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Anzahl der zu überspringenden Datensätze für Paginierung",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Sortierungsfeld und -richtung (z.B. 'jahr DESC')",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine",
+            "in": "query",
+            "description": "Filterung auf spezifische Werte eines Feldes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Ausschluss spezifischer Werte eines Feldes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Sprache für die Antwort (de, en, fr)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "de",
+                "en",
+                "fr"
+              ],
+              "default": "de"
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "description": "Zeitzone für Datumswerte",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "UTC"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Erfolgreiche Antwort mit Berufsbildungsdaten",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_count": {
+                      "type": "integer",
+                      "description": "Gesamtanzahl der verfügbaren Datensätze"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "record": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Eindeutige ID des Datensatzes"
+                              },
+                              "timestamp": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Zeitstempel der letzten Änderung"
+                              },
+                              "fields": {
+                                "type": "object",
+                                "description": "Datenfelder mit Informationen zu Lehrverträgen und Abschlüssen",
+                                "properties": {
+                                  "jahr": {
+                                    "type": "integer",
+                                    "description": "Berichtsjahr"
+                                  },
+                                  "ausbildungsfeld": {
+                                    "type": "string",
+                                    "description": "Ausbildungsfeld oder Berufsgruppe"
+                                  },
+                                  "anzahl_lehrvertraege_total": {
+                                    "type": "integer",
+                                    "description": "Totale Anzahl der Lehrverträge"
+                                  },
+                                  "neu_registrierte_lehrvertraege": {
+                                    "type": "integer",
+                                    "description": "Anzahl der neu registrierten Lehrverträge"
+                                  },
+                                  "abschluesse_qualifikationsverfahren": {
+                                    "type": "integer",
+                                    "description": "Anzahl der Abschlüsse der Qualifikationsverfahren (Lehrabschlussprüfungen)"
+                                  },
+                                  "repetenten": {
+                                    "type": "integer",
+                                    "description": "Anzahl Repetenten (Wert -99 bedeutet aus Datenschutzgründen nicht veröffentlicht)"
+                                  },
+                                  "durchgefuehrte_qualifikationsverfahren": {
+                                    "type": "integer",
+                                    "description": "Anzahl durchgeführte Qualifikationsverfahren"
+                                  },
+                                  "faehigkeitsausweise": {
+                                    "type": "integer",
+                                    "description": "Anzahl ausgestellte Fähigkeitsausweise"
+                                  },
+                                  "attestausweise": {
+                                    "type": "integer",
+                                    "description": "Anzahl ausgestellte Attestausweise (Wert -99 bedeutet aus Datenschutzgründen nicht veröffentlicht)"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ungültige Anfrage"
+          },
+          "404": {
+            "description": "Dataset nicht gefunden"
+          },
+          "500": {
+            "description": "Interner Serverfehler"
+          }
+        }
+      }
+    },
+    "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}": {
+      "get": {
+        "summary": "Export von Berufsbildungsdaten",
+        "description": "Exportiert die Berufsbildungsdaten in verschiedenen Formaten (CSV, JSON, Excel, etc.)",
+        "operationId": "exportBerufsbildungData",
+        "tags": [
+          "Berufsbildung"
+        ],
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "description": "Export-Format",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv",
+                "json",
+                "xls",
+                "xlsx",
+                "geojson",
+                "shp"
+              ]
+            }
+          },
+          {
+            "name": "select",
+            "in": "query",
+            "description": "Liste der zu exportierenden Felder, durch Komma getrennt",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "description": "Filterbedingung für den Export",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine",
+            "in": "query",
+            "description": "Filterung auf spezifische Werte eines Feldes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "description": "Ausschluss spezifischer Werte eines Feldes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Sprache für den Export (de, en, fr)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "de",
+                "en",
+                "fr"
+              ],
+              "default": "de"
+            }
+          },
+          {
+            "name": "delimiter",
+            "in": "query",
+            "description": "Trennzeichen für CSV-Export",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                ",",
+                ";",
+                "|",
+                "\t"
+              ],
+              "default": ";"
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "description": "Zeitzone für Datumswerte",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "UTC"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Erfolgreicher Export der Daten",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.ms-excel": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ungültige Anfrage oder ungültiges Format"
+          },
+          "404": {
+            "description": "Dataset nicht gefunden"
+          },
+          "500": {
+            "description": "Interner Serverfehler"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Berufsbildung",
+      "description": "Endpunkte für den Zugriff auf Berufsbildungsdaten zu Lehrverträgen und Abschlüssen seit 2017"
+    }
+  ]
+}

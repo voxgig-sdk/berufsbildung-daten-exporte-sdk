@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Open Data Kanton Thurgau"
+        url: "https://data.tg.ch"
+      }
+      description: "API zur Exportierung von Daten zu Lehrverträgen und Abschlüssen der Berufsbildung seit 2017, einschließlich Anzahl der Lehrverträge, neu registrierten Lehrverträgen und Abschlüssen der Qualifikationsverfahren nach Ausbildungsfeldern. Der Datensatz enthält die Totale Anzahl der Lehrverträge, sowie die neu registrierten Lehrverträge des entsprechenden Jahres. Aufgeführt sind auch die Abschlüsse der Qualifikationsverfahren (Lehrabschlussprüfungen) nach Ausbildungsfeldern."
+      servers: [
+        {
+          description: "Production API Server"
+          url: "https://data.tg.ch/api"
+        }
+      ]
+      title: "Berufsbildung Daten Exporte"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
