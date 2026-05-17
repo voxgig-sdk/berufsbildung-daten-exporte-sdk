@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/core"
+import "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go/core"
 
 func makeResultUtil(ctx *core.Context) (*core.Result, error) {
 	if ctx.Out["result"] != nil {

@@ -3,15 +3,18 @@
     "berufsbildung": {
       "BERUFSBILDUNG00": {
         "record": {},
-        "format": "FORMAT01"
+        "format": "FORMAT01",
+        "id": "BERUFSBILDUNG00"
       },
       "BERUFSBILDUNG01": {
         "record": {},
-        "format": "FORMAT01"
+        "format": "FORMAT01",
+        "id": "BERUFSBILDUNG01"
       },
       "BERUFSBILDUNG02": {
         "record": {},
-        "format": "FORMAT01"
+        "format": "FORMAT01",
+        "id": "BERUFSBILDUNG02"
       }
     }
   },

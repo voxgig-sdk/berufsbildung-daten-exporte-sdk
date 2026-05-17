@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk"
-	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/core"
+	sdk "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go"
+	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go/core"
 )
 
 func TestBerufsbildungDirect(t *testing.T) {

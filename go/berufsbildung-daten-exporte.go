@@ -1,10 +1,10 @@
 package voxgigberufsbildungdatenexportesdk
 
 import (
-	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/core"
-	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/entity"
-	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/feature"
-	_ "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/utility"
+	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go/core"
+	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go/entity"
+	"github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go/feature"
+	_ "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
