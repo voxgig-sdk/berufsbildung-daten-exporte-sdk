@@ -98,7 +98,6 @@ function berufsbildung_basic_setup(extra)
     ["BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID"] = idmap,
     ["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] = "FALSE",
     ["BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN"] = "FALSE",
-    ["BERUFSBILDUNGDATENEXPORTE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -110,7 +109,6 @@ function berufsbildung_basic_setup(extra)
   if env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["BERUFSBILDUNGDATENEXPORTE_APIKEY"],
       },
       extra or {},
     })

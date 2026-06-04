@@ -17,8 +17,23 @@ main: {
       ]
       title: "Berufsbildung Daten Exporte"
       version: "1.0.0"
+      tagline: "Export vocational training data from Canton Thurgau, covering apprenticeship contracts and qualification completions since 2017"
+      homepage: "https://data.tg.ch/"
+      docs_url: "https://data.tg.ch/api"
+      about_md: `This SDK wraps the **Berufsbildung Daten Exporte** dataset published on the [Open Data Kanton Thurgau](https://data.tg.ch/) portal, the Swiss canton of Thurgau's open government data platform. The dataset tracks vocational education statistics from 2017 onward, including apprenticeship contracts, newly registered contracts, and qualification procedure completions broken down by training field.
+
+What you can read from the API:
+
+- Counts of active apprenticeship contracts (\`Lehrverträge\`) by year
+- Newly registered apprenticeship contracts (\`neu registrierte Lehrverträge\`)
+- Completed qualification procedures (\`Abschlüsse der Qualifikationsverfahren\`)
+- Breakdowns by training field (\`Ausbildungsfelder\`)
+
+The portal is built on the Opendatasoft platform, so records are queried via standard catalogue endpoints under \`https://data.tg.ch/api\` with JSON responses. CORS is enabled and no authentication is required for read access.`
+      entity_desc: {
+        berufsbildung: "Vocational training records from Canton Thurgau covering apprenticeship contracts, new registrations, and qualification completions per year and training field, exposed via the Opendatasoft dataset `berufsbildung-daten-exporte`."
+      }
+      auth: false
     }
   }
-}
-
 }

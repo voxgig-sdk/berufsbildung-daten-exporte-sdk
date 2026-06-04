@@ -129,7 +129,6 @@ func berufsbildungBasicSetup(extra map[string]any) *entityTestSetup {
 		"BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID": idmap,
 		"BERUFSBILDUNGDATENEXPORTE_TEST_LIVE":      "FALSE",
 		"BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN":   "FALSE",
-		"BERUFSBILDUNGDATENEXPORTE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID"])
@@ -140,7 +139,6 @@ func berufsbildungBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["BERUFSBILDUNGDATENEXPORTE_APIKEY"],
 			},
 			extra,
 		})
