@@ -114,6 +114,7 @@ function basicSetup(extra?: any) {
     'BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID': idmap,
     'BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE': 'FALSE',
     'BERUFSBILDUNG_DATEN_EXPORTE_TEST_EXPLAIN': 'FALSE',
+    'BERUFSBILDUNG_DATEN_EXPORTE_APIKEY': 'NONE',
   })
 
   idmap = env['BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID']
@@ -123,6 +124,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new BerufsbildungDatenExporteSDK(merge([
       {
+        apikey: env.BERUFSBILDUNG_DATEN_EXPORTE_APIKEY,
       },
       extra
     ]))

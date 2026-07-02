@@ -137,12 +137,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID': {},
     'BERUFSBILDUNGDATENEXPORTE_TEST_LIVE': 'FALSE',
+    'BERUFSBILDUNGDATENEXPORTE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.BERUFSBILDUNGDATENEXPORTE_TEST_LIVE
 
   if (live) {
     const client = new BerufsbildungDatenExporteSDK({
+      apikey: env.BERUFSBILDUNGDATENEXPORTE_APIKEY,
     })
 
     let idmap: any = env['BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID']

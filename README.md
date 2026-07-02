@@ -1,21 +1,8 @@
 # BerufsbildungDatenExporte SDK
 
-Export vocational training data from Canton Thurgau, covering apprenticeship contracts and qualification completions since 2017
+Berufsbildung Daten Exporte client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Berufsbildung Daten Exporte
-
-This SDK wraps the **Berufsbildung Daten Exporte** dataset published on the [Open Data Kanton Thurgau](https://data.tg.ch/) portal, the Swiss canton of Thurgau's open government data platform. The dataset tracks vocational education statistics from 2017 onward, including apprenticeship contracts, newly registered contracts, and qualification procedure completions broken down by training field.
-
-What you can read from the API:
-
-- Counts of active apprenticeship contracts (`Lehrverträge`) by year
-- Newly registered apprenticeship contracts (`neu registrierte Lehrverträge`)
-- Completed qualification procedures (`Abschlüsse der Qualifikationsverfahren`)
-- Breakdowns by training field (`Ausbildungsfelder`)
-
-The portal is built on the Opendatasoft platform, so records are queried via standard catalogue endpoints under `https://data.tg.ch/api` with JSON responses. CORS is enabled and no authentication is required for read access.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install berufsbildung-daten-exporte-sdk
 luarocks install berufsbildung-daten-exporte-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { BerufsbildungDatenExporteSDK } from 'berufsbildung-daten-exporte'
 
-const client = new BerufsbildungDatenExporteSDK({})
+const client = new BerufsbildungDatenExporteSDK({
+  apikey: process.env.BERUFSBILDUNG-DATEN-EXPORTE_APIKEY,
+})
 
 // List all berufsbildungs
 const berufsbildungs = await client.Berufsbildung().list()
+console.log(berufsbildungs.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Berufsbildung** | Vocational training records from Canton Thurgau covering apprenticeship contracts, new registrations, and qualification completions per year and training field, exposed via the Opendatasoft dataset `berufsbildung-daten-exporte`. | `/explore/v2.1/catalog/datasets/dek-abb-1/records` |
+| **Berufsbildung** |  | `/explore/v2.1/catalog/datasets/dek-abb-1/records` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,17 +100,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
 
-client = BerufsbildungDatenExporteSDK({})
+client = BerufsbildungDatenExporteSDK({
+    "apikey": os.environ.get("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
+})
 
 # List all berufsbildungs
-berufsbildungs, err = client.Berufsbildung(None).list(None, None)
+berufsbildungs, err = client.Berufsbildung().list()
+print(berufsbildungs)
 
 # Load a specific berufsbildung
-berufsbildung, err = client.Berufsbildung(None).load(
-    {"id": "example_id"}, None
-)
+berufsbildung, err = client.Berufsbildung().load({"id": "example_id"})
+print(berufsbildung)
 ```
 
 ### PHP
@@ -130,15 +122,17 @@ berufsbildung, err = client.Berufsbildung(None).load(
 <?php
 require_once 'berufsbildungdatenexporte_sdk.php';
 
-$client = new BerufsbildungDatenExporteSDK([]);
+$client = new BerufsbildungDatenExporteSDK([
+    "apikey" => getenv("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
+]);
 
 // List all berufsbildungs
-[$berufsbildungs, $err] = $client->Berufsbildung(null)->list(null, null);
+[$berufsbildungs, $err] = $client->Berufsbildung()->list();
+print_r($berufsbildungs);
 
 // Load a specific berufsbildung
-[$berufsbildung, $err] = $client->Berufsbildung(null)->load(
-    ["id" => "example_id"], null
-);
+[$berufsbildung, $err] = $client->Berufsbildung()->load(["id" => "example_id"]);
+print_r($berufsbildung);
 ```
 
 ### Golang
@@ -146,10 +140,13 @@ $client = new BerufsbildungDatenExporteSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go"
 
-client := sdk.NewBerufsbildungDatenExporteSDK(map[string]any{})
+client := sdk.NewBerufsbildungDatenExporteSDK(map[string]any{
+    "apikey": os.Getenv("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
+})
 
 // List all berufsbildungs
 berufsbildungs, err := client.Berufsbildung(nil).List(nil, nil)
+fmt.Println(berufsbildungs)
 ```
 
 ### Ruby
@@ -157,15 +154,17 @@ berufsbildungs, err := client.Berufsbildung(nil).List(nil, nil)
 ```ruby
 require_relative "BerufsbildungDatenExporte_sdk"
 
-client = BerufsbildungDatenExporteSDK.new({})
+client = BerufsbildungDatenExporteSDK.new({
+  "apikey" => ENV["BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"],
+})
 
 # List all berufsbildungs
-berufsbildungs, err = client.Berufsbildung(nil).list(nil, nil)
+berufsbildungs, err = client.Berufsbildung().list
+puts berufsbildungs
 
 # Load a specific berufsbildung
-berufsbildung, err = client.Berufsbildung(nil).load(
-  { "id" => "example_id" }, nil
-)
+berufsbildung, err = client.Berufsbildung().load({ "id" => "example_id" })
+puts berufsbildung
 ```
 
 ### Lua
@@ -173,15 +172,17 @@ berufsbildung, err = client.Berufsbildung(nil).load(
 ```lua
 local sdk = require("berufsbildung-daten-exporte_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
+})
 
 -- List all berufsbildungs
-local berufsbildungs, err = client:Berufsbildung(nil):list(nil, nil)
+local berufsbildungs, err = client:Berufsbildung():list()
+print(berufsbildungs)
 
 -- Load a specific berufsbildung
-local berufsbildung, err = client:Berufsbildung(nil):load(
-  { id = "example_id" }, nil
-)
+local berufsbildung, err = client:Berufsbildung():load({ id = "example_id" })
+print(berufsbildung)
 ```
 
 ## Unit testing in offline mode
@@ -200,25 +201,21 @@ const result = await client.Berufsbildung().load({ id: 'test01' })
 ### Python
 
 ```python
-client = BerufsbildungDatenExporteSDK.test(None, None)
-result, err = client.Berufsbildung(None).load(
-    {"id": "test01"}, None
-)
+client = BerufsbildungDatenExporteSDK.test()
+result, err = client.Berufsbildung().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = BerufsbildungDatenExporteSDK::test(null, null);
-[$result, $err] = $client->Berufsbildung(null)->load(
-    ["id" => "test01"], null
-);
+$client = BerufsbildungDatenExporteSDK::test();
+[$result, $err] = $client->Berufsbildung()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Berufsbildung(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -227,19 +224,15 @@ result, err := client.Berufsbildung(nil).Load(
 ### Ruby
 
 ```ruby
-client = BerufsbildungDatenExporteSDK.test(nil, nil)
-result, err = client.Berufsbildung(nil).load(
-  { "id" => "test01" }, nil
-)
+client = BerufsbildungDatenExporteSDK.test
+result, err = client.Berufsbildung().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Berufsbildung(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Berufsbildung():load({ id = "test01" })
 ```
 
 ## How it works
@@ -343,11 +336,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Berufsbildung Daten Exporte
-
-- Upstream: [https://data.tg.ch/](https://data.tg.ch/)
-- API docs: [https://data.tg.ch/api](https://data.tg.ch/api)
 
 ---
 

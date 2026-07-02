@@ -116,12 +116,14 @@ def berufsbildung_direct_setup(mockres)
   env = Runner.env_override({
     "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID" => {},
     "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE" => "FALSE",
+    "BERUFSBILDUNGDATENEXPORTE_APIKEY" => "NONE",
   })
 
   live = env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["BERUFSBILDUNGDATENEXPORTE_APIKEY"],
     }
     client = BerufsbildungDatenExporteSDK.new(merged_opts)
     return {

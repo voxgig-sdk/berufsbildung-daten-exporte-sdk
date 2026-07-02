@@ -92,6 +92,7 @@ function berufsbildung_basic_setup($extra)
         "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID" => $idmap,
         "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE" => "FALSE",
         "BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN" => "FALSE",
+        "BERUFSBILDUNGDATENEXPORTE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -103,6 +104,7 @@ function berufsbildung_basic_setup($extra)
     if ($env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["BERUFSBILDUNGDATENEXPORTE_APIKEY"],
             ],
             $extra ?? [],
         ]);

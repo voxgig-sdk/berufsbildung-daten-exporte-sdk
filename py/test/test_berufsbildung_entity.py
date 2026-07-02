@@ -98,6 +98,7 @@ def _berufsbildung_basic_setup(extra):
         "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID": idmap,
         "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE": "FALSE",
         "BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN": "FALSE",
+        "BERUFSBILDUNGDATENEXPORTE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -108,6 +109,7 @@ def _berufsbildung_basic_setup(extra):
     if env.get("BERUFSBILDUNGDATENEXPORTE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("BERUFSBILDUNGDATENEXPORTE_APIKEY"),
             },
             extra or {},
         ])
