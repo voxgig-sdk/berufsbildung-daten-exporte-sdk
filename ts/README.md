@@ -10,7 +10,7 @@ The TypeScript SDK for the BerufsbildungDatenExporte API — a type-safe, entity
 
 ## Install
 ```bash
-npm install berufsbildung-daten-exporte
+npm install @voxgig-sdk/berufsbildung-daten-exporte
 ```
 ## Tutorial: your first API call
 

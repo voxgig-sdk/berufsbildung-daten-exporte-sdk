@@ -10,7 +10,7 @@ The Lua SDK for the BerufsbildungDatenExporte API — an entity-oriented client 
 
 ## Install
 ```bash
-luarocks install berufsbildung-daten-exporte-sdk
+luarocks install voxgig-sdk-berufsbildung-daten-exporte
 ```
 
 If the module is not yet published, add the source directory to

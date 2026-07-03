@@ -10,7 +10,7 @@ The PHP SDK for the BerufsbildungDatenExporte API — an entity-oriented client 
 
 ## Install
 ```bash
-composer require voxgig/berufsbildung-daten-exporte-sdk
+composer require voxgig-sdk/berufsbildung-daten-exporte
 ```
 
 

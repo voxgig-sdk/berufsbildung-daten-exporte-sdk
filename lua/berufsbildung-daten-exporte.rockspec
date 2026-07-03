@@ -8,12 +8,14 @@ source = {
   dir = "berufsbildung-daten-exporte-sdk/lua"
 }
 description = {
-  summary = "BerufsbildungDatenExporte SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Berufsbildung Daten Exporte public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk",
+  issues_url = "https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "berufsbildung-daten-exporte" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

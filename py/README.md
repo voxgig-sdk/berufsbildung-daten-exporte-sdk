@@ -10,7 +10,7 @@ The Python SDK for the BerufsbildungDatenExporte API — an entity-oriented clie
 
 ## Install
 ```bash
-pip install berufsbildung-daten-exporte-sdk
+pip install voxgig-sdk-berufsbildung-daten-exporte
 ```
 
 Or install from source:

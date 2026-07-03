@@ -10,13 +10,13 @@ The Ruby SDK for the BerufsbildungDatenExporte API — an entity-oriented client
 
 ## Install
 ```bash
-gem install berufsbildung-daten-exporte-sdk
+gem install voxgig-sdk-berufsbildung-daten-exporte
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "berufsbildung-daten-exporte-sdk"
+gem "voxgig-sdk-berufsbildung-daten-exporte"
 ```
 
 Then run:
