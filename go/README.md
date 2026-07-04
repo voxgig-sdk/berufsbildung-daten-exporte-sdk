@@ -30,53 +30,39 @@ go mod edit -replace github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go=..
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go"
-    "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List berufsbildungs
-
-```go
-    result, err := client.Berufsbildung(nil).List(nil, nil)
+    // List berufsbildung records — the value is the array of records itself.
+    berufsbildungs, err := client.Berufsbildung(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range berufsbildungs.([]any) {
+        fmt.Println(item)
     }
-```
 
-### 3. Load a berufsbildung
-
-```go
-    result, err = client.Berufsbildung(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single berufsbildung — the value is the loaded record.
+    berufsbildung, err := client.Berufsbildung(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(berufsbildung)
 }
 ```
 
@@ -127,10 +113,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Berufsbildung(nil).Load(
+berufsbildung, err := client.Berufsbildung(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(berufsbildung) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -227,17 +216,24 @@ All entities implement the `BerufsbildungDatenExporteEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    berufsbildung, err := client.Berufsbildung(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // berufsbildung is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -276,13 +272,21 @@ Create an instance: `berufsbildung := client.Berufsbildung(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Berufsbildung(nil).Load(map[string]any{"id": "berufsbildung_id"}, nil)
+berufsbildung, err := client.Berufsbildung(nil).Load(map[string]any{"id": "berufsbildung_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(berufsbildung) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Berufsbildung(nil).List(nil, nil)
+berufsbildungs, err := client.Berufsbildung(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(berufsbildungs) // the array of records
 ```
 
 

@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## BerufsbildungEntity
 
 ```lua
-local berufsbildung = client:berufsbildung(nil)
+local berufsbildung = client:Berufsbildung(nil)
 ```
 
 ### Fields
@@ -99,7 +99,7 @@ local berufsbildung = client:berufsbildung(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:berufsbildung():list()
+local results, err = client:Berufsbildung():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -107,7 +107,7 @@ local results, err = client:berufsbildung():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:berufsbildung():load({ id = "berufsbildung_id" })
+local result, err = client:Berufsbildung():load({ id = "berufsbildung_id" })
 ```
 
 ### Common Methods

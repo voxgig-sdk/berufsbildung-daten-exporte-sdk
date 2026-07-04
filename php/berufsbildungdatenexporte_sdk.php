@@ -233,10 +233,10 @@ class BerufsbildungDatenExporteSDK
 
     private $_berufsbildung = null;
 
-    // Idiomatic facade: $client->berufsbildung()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Berufsbildung() (PHP method
-    // names are case-insensitive).
-    public function berufsbildung($data = null)
+    // Canonical facade: $client->Berufsbildung()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->berufsbildung()
+    // resolves here too.
+    public function Berufsbildung($data = null)
     {
         require_once __DIR__ . '/entity/berufsbildung_entity.php';
         if ($data === null) {

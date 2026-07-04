@@ -31,24 +31,28 @@ from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
 client = BerufsbildungDatenExporteSDK()
 ```
 
-### 2. List berufsbildungs
+### 2. List berufsbildung records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.berufsbildung.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    berufsbildungs = client.Berufsbildung().list({})
+    for berufsbildung in berufsbildungs:
+        print(berufsbildung)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a berufsbildung
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.berufsbildung.load({"id": "example_id"})
-    print(result)
+    berufsbildung = client.Berufsbildung().load({"id": "example_id"})
+    print(berufsbildung)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = BerufsbildungDatenExporteSDK.test()
 
-result = client.berufsbildung.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+berufsbildung = client.Berufsbildung().load({"id": "test01"})
+# berufsbildung contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -230,7 +235,7 @@ API path: `/explore/v2.1/catalog/datasets/dek-abb-1/records`
 
 ### Berufsbildung
 
-Create an instance: `const berufsbildung = client.berufsbildung`
+Create an instance: `berufsbildung = client.Berufsbildung()`
 
 #### Operations
 
@@ -247,14 +252,14 @@ Create an instance: `const berufsbildung = client.berufsbildung`
 
 #### Example: Load
 
-```ts
-const berufsbildung = await client.berufsbildung.load({ id: 'berufsbildung_id' })
+```python
+berufsbildung = client.Berufsbildung().load({"id": "berufsbildung_id"})
 ```
 
 #### Example: List
 
-```ts
-const berufsbildungs = await client.berufsbildung.list()
+```python
+berufsbildungs = client.Berufsbildung().list({})
 ```
 
 
@@ -328,7 +333,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-berufsbildung = client.berufsbildung
+berufsbildung = client.Berufsbildung()
 berufsbildung.load({"id": "example_id"})
 
 # berufsbildung.data_get() now returns the loaded berufsbildung data

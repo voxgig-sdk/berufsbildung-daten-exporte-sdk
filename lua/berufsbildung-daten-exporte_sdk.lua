@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:berufsbildung():list() / client:berufsbildung():load({ id = ... })
-function BerufsbildungDatenExporteSDK:berufsbildung(data)
+-- Idiomatic facade: client:Berufsbildung():list() / client:Berufsbildung():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function BerufsbildungDatenExporteSDK:Berufsbildung(data)
   local EntityMod = require("entity.berufsbildung_entity")
   if data == nil then
     if self._berufsbildung == nil then
@@ -253,12 +254,6 @@ function BerufsbildungDatenExporteSDK:berufsbildung(data)
     end
     return self._berufsbildung
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:berufsbildung() instead.
-function BerufsbildungDatenExporteSDK:Berufsbildung(data)
-  local EntityMod = require("entity.berufsbildung_entity")
   return EntityMod.new(self, data)
 end
 

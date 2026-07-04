@@ -208,13 +208,7 @@ class BerufsbildungDatenExporteSDK
   end
 
 
-  # Idiomatic facade: client.berufsbildung.list / client.berufsbildung.load({ "id" => ... })
-  def berufsbildung
-    require_relative 'entity/berufsbildung_entity'
-    @berufsbildung ||= BerufsbildungEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.berufsbildung instead.
+  # Canonical facade: client.Berufsbildung.list / client.Berufsbildung.load({ "id" => ... })
   def Berufsbildung(data = nil)
     require_relative 'entity/berufsbildung_entity'
     BerufsbildungEntity.new(self, data)

@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## BerufsbildungEntity
 
 ```ruby
-berufsbildung = client.berufsbildung
+berufsbildung = client.Berufsbildung
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ berufsbildung = client.berufsbildung
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.berufsbildung.list(nil)
+results = client.Berufsbildung.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -110,7 +110,7 @@ results = client.berufsbildung.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.berufsbildung.load({ "id" => "berufsbildung_id" })
+result = client.Berufsbildung.load({ "id" => "berufsbildung_id" })
 ```
 
 ### Common Methods

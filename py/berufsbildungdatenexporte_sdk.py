@@ -220,25 +220,15 @@ class BerufsbildungDatenExporteSDK:
         }
 
 
-    @property
-    def berufsbildung(self):
-        """Idiomatic facade: client.berufsbildung.list() / client.berufsbildung.load({"id": ...})."""
-        from entity.berufsbildung_entity import BerufsbildungEntity
-        cached = getattr(self, "_berufsbildung", None)
-        if cached is None:
-            cached = BerufsbildungEntity(self, None)
-            self._berufsbildung = cached
-        return cached
-
-    def Berufsbildung(self, data=None):
-        # Deprecated: use client.berufsbildung instead.
+    def Berufsbildung(self, data=None) -> "BerufsbildungEntity":
+        """Entity factory: client.Berufsbildung().list({}) / client.Berufsbildung().load({"id": ...})."""
         from entity.berufsbildung_entity import BerufsbildungEntity
         return BerufsbildungEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "BerufsbildungDatenExporteSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class BerufsbildungDatenExporteSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.berufsbildung_entity import BerufsbildungEntity

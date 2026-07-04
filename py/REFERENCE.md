@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## BerufsbildungEntity
 
 ```python
-berufsbildung = client.berufsbildung
+berufsbildung = client.Berufsbildung()
 ```
 
 ### Fields
@@ -96,7 +96,9 @@ berufsbildung = client.berufsbildung
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.berufsbildung.list({})
+results = client.Berufsbildung().list({})
+for berufsbildung in results:
+    print(berufsbildung)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -104,7 +106,7 @@ results = client.berufsbildung.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.berufsbildung.load({"id": "berufsbildung_id"})
+result = client.Berufsbildung().load({"id": "berufsbildung_id"})
 ```
 
 ### Common Methods

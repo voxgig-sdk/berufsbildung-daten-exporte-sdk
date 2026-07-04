@@ -29,18 +29,16 @@ require_once 'berufsbildungdatenexporte_sdk.php';
 $client = new BerufsbildungDatenExporteSDK();
 ```
 
-### 2. List berufsbildungs
+### 2. List berufsbildung records
 
 ```php
 try {
-    $result = $client->berufsbildung()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Berufsbildung records — iterate directly.
+    $berufsbildungs = $client->Berufsbildung()->list();
+    foreach ($berufsbildungs as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->berufsbildung()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Berufsbildung record (throws on error).
+    $berufsbildung = $client->Berufsbildung()->load(["id" => "example_id"]);
+    print_r($berufsbildung);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = BerufsbildungDatenExporteSDK::test();
+$client = BerufsbildungDatenExporteSDK::test([
+    "entity" => ["berufsbildung" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->berufsbildung()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$berufsbildung = $client->Berufsbildung()->load(["id" => "test01"]);
+print_r($berufsbildung);
 ```
 
 ### Use a custom fetch function
@@ -239,7 +242,7 @@ API path: `/explore/v2.1/catalog/datasets/dek-abb-1/records`
 
 ### Berufsbildung
 
-Create an instance: `const berufsbildung = client.berufsbildung`
+Create an instance: `$berufsbildung = $client->Berufsbildung();`
 
 #### Operations
 
@@ -256,14 +259,16 @@ Create an instance: `const berufsbildung = client.berufsbildung`
 
 #### Example: Load
 
-```ts
-const berufsbildung = await client.berufsbildung.load({ id: 'berufsbildung_id' })
+```php
+// load() returns the bare Berufsbildung record (throws on error).
+$berufsbildung = $client->Berufsbildung()->load(["id" => "berufsbildung_id"]);
 ```
 
 #### Example: List
 
-```ts
-const berufsbildungs = await client.berufsbildung.list()
+```php
+// list() returns an array of Berufsbildung records (throws on error).
+$berufsbildungs = $client->Berufsbildung()->list();
 ```
 
 
@@ -338,7 +343,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$berufsbildung = $client->berufsbildung();
+$berufsbildung = $client->Berufsbildung();
 $berufsbildung->load(["id" => "example_id"]);
 
 // $berufsbildung->dataGet() now returns the loaded berufsbildung data

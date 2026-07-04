@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## BerufsbildungEntity
 
 ```php
-$berufsbildung = $client->berufsbildung();
+$berufsbildung = $client->Berufsbildung();
 ```
 
 ### Fields
@@ -101,7 +101,7 @@ $berufsbildung = $client->berufsbildung();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->berufsbildung()->list([]);
+$results = $client->Berufsbildung()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -109,7 +109,7 @@ $results = $client->berufsbildung()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->berufsbildung()->load(["id" => "berufsbildung_id"]);
+$result = $client->Berufsbildung()->load(["id" => "berufsbildung_id"]);
 ```
 
 ### Common Methods

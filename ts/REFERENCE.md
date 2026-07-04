@@ -109,7 +109,7 @@ Alias for `BerufsbildungDatenExporteSDK.test()`.
 ## BerufsbildungEntity
 
 ```ts
-const berufsbildung = client.berufsbildung
+const berufsbildung = client.Berufsbildung()
 ```
 
 ### Fields
@@ -125,7 +125,7 @@ const berufsbildung = client.berufsbildung
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.berufsbildung.list()
+const results = await client.Berufsbildung().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -133,7 +133,7 @@ const results = await client.berufsbildung.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.berufsbildung.load({ id: 'berufsbildung_id' })
+const result = await client.Berufsbildung().load({ id: 'berufsbildung_id' })
 ```
 
 ### Common Methods

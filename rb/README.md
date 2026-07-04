@@ -28,16 +28,14 @@ require_relative "BerufsbildungDatenExporte_sdk"
 client = BerufsbildungDatenExporteSDK.new
 ```
 
-### 2. List berufsbildungs
+### 2. List berufsbildung records
 
 ```ruby
 begin
-  result = client.berufsbildung.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Berufsbildung records — iterate directly.
+  berufsbildungs = client.Berufsbildung.list
+  berufsbildungs.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.berufsbildung.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Berufsbildung record (raises on error).
+  berufsbildung = client.Berufsbildung.load({ "id" => "example_id" })
+  puts berufsbildung
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = BerufsbildungDatenExporteSDK.test
+client = BerufsbildungDatenExporteSDK.test({
+  "entity" => { "berufsbildung" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.berufsbildung.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+berufsbildung = client.Berufsbildung.load({ "id" => "test01" })
+puts berufsbildung
 ```
 
 ### Use a custom fetch function
@@ -234,7 +237,7 @@ API path: `/explore/v2.1/catalog/datasets/dek-abb-1/records`
 
 ### Berufsbildung
 
-Create an instance: `const berufsbildung = client.berufsbildung`
+Create an instance: `berufsbildung = client.Berufsbildung`
 
 #### Operations
 
@@ -251,14 +254,16 @@ Create an instance: `const berufsbildung = client.berufsbildung`
 
 #### Example: Load
 
-```ts
-const berufsbildung = await client.berufsbildung.load({ id: 'berufsbildung_id' })
+```ruby
+# load returns the bare Berufsbildung record (raises on error).
+berufsbildung = client.Berufsbildung.load({ "id" => "berufsbildung_id" })
 ```
 
 #### Example: List
 
-```ts
-const berufsbildungs = await client.berufsbildung.list()
+```ruby
+# list returns an Array of Berufsbildung records (raises on error).
+berufsbildungs = client.Berufsbildung.list
 ```
 
 
@@ -333,7 +338,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-berufsbildung = client.berufsbildung
+berufsbildung = client.Berufsbildung
 berufsbildung.load({ "id" => "example_id" })
 
 # berufsbildung.data_get now returns the loaded berufsbildung data

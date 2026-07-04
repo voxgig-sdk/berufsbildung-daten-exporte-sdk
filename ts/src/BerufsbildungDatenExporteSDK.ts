@@ -204,14 +204,7 @@ class BerufsbildungDatenExporteSDK {
 
 
 
-  _berufsbildung?: BerufsbildungEntity
-
-  // Idiomatic facade: `client.berufsbildung.list()` / `client.berufsbildung.load({ id })`.
-  get berufsbildung(): BerufsbildungEntity {
-    return (this._berufsbildung ??= new BerufsbildungEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.berufsbildung` instead. */
+  // Entity access: `client.Berufsbildung().list()` / `client.Berufsbildung().load({ id })`.
   Berufsbildung(data?: any) {
     const self = this
     return new BerufsbildungEntity(self,data)

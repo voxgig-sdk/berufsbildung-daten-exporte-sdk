@@ -26,9 +26,11 @@ import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-ex
 
 const client = new BerufsbildungDatenExporteSDK()
 
-// List all berufsbildungs
-const berufsbildungs = await client.berufsbildung.list()
-console.log(berufsbildungs.data)
+// List all berufsbildungs (returns Berufsbildung[])
+const berufsbildungs = await client.Berufsbildung().list()
+for (const berufsbildung of berufsbildungs) {
+  console.log(berufsbildung)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,12 +85,13 @@ from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
 
 client = BerufsbildungDatenExporteSDK()
 
-# List all berufsbildungs
-berufsbildungs = client.berufsbildung.list()
-print(berufsbildungs)
+# List all berufsbildungs (returns a list, raises on error)
+berufsbildungs = client.Berufsbildung().list({})
+for berufsbildung in berufsbildungs:
+    print(berufsbildung)
 
-# Load a specific berufsbildung
-berufsbildung = client.berufsbildung.load({"id": "example_id"})
+# Load a specific berufsbildung (returns the record, raises on error)
+berufsbildung = client.Berufsbildung().load({"id": "example_id"})
 print(berufsbildung)
 ```
 
@@ -100,12 +103,12 @@ require_once 'berufsbildungdatenexporte_sdk.php';
 
 $client = new BerufsbildungDatenExporteSDK();
 
-// List all berufsbildungs (throws on error)
-$berufsbildungs = $client->berufsbildung()->list();
+// List all berufsbildungs (returns an array; throws on error)
+$berufsbildungs = $client->Berufsbildung()->list();
 print_r($berufsbildungs);
 
-// Load a specific berufsbildung
-$berufsbildung = $client->berufsbildung()->load(["id" => "example_id"]);
+// Load a specific berufsbildung (returns the bare record; throws on error)
+$berufsbildung = $client->Berufsbildung()->load(["id" => "example_id"]);
 print_r($berufsbildung);
 ```
 
@@ -128,12 +131,12 @@ require_relative "BerufsbildungDatenExporte_sdk"
 
 client = BerufsbildungDatenExporteSDK.new
 
-# List all berufsbildungs
-berufsbildungs = client.berufsbildung.list
+# List all berufsbildungs (returns an Array; raises on error)
+berufsbildungs = client.Berufsbildung.list
 puts berufsbildungs
 
-# Load a specific berufsbildung
-berufsbildung = client.berufsbildung.load({ "id" => "example_id" })
+# Load a specific berufsbildung (returns the bare record; raises on error)
+berufsbildung = client.Berufsbildung.load({ "id" => "example_id" })
 puts berufsbildung
 ```
 
@@ -145,11 +148,11 @@ local sdk = require("berufsbildung-daten-exporte_sdk")
 local client = sdk.new()
 
 -- List all berufsbildungs
-local berufsbildungs, err = client:berufsbildung():list()
+local berufsbildungs, err = client:Berufsbildung():list()
 print(berufsbildungs)
 
 -- Load a specific berufsbildung
-local berufsbildung, err = client:berufsbildung():load({ id = "example_id" })
+local berufsbildung, err = client:Berufsbildung():load({ id = "example_id" })
 print(berufsbildung)
 ```
 
@@ -162,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = BerufsbildungDatenExporteSDK.test()
-const result = await client.berufsbildung.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const berufsbildung = await client.Berufsbildung().load({ id: 'test01' })
+// berufsbildung is a bare Berufsbildung populated with mock data
+console.log(berufsbildung)
 ```
 
 ### Python
 
 ```python
 client = BerufsbildungDatenExporteSDK.test()
-result = client.berufsbildung.load({"id": "test01"})
+berufsbildung = client.Berufsbildung().load({"id": "test01"})
+print(berufsbildung)
 ```
 
 ### PHP
 
 ```php
-$client = BerufsbildungDatenExporteSDK::test();
-$result = $client->berufsbildung()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = BerufsbildungDatenExporteSDK::test([
+    "entity" => ["berufsbildung" => ["test01" => ["id" => "test01"]]],
+]);
+$berufsbildung = $client->Berufsbildung()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -192,15 +200,18 @@ result, err := client.Berufsbildung(nil).Load(
 ### Ruby
 
 ```ruby
-client = BerufsbildungDatenExporteSDK.test
-result = client.berufsbildung.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = BerufsbildungDatenExporteSDK.test({
+  "entity" => { "berufsbildung" => { "test01" => { "id" => "test01" } } },
+})
+berufsbildung = client.Berufsbildung.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:berufsbildung():load({ id = "test01" })
+local result, err = client:Berufsbildung():load({ id = "test01" })
 ```
 
 ## How it works
@@ -248,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
