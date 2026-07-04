@@ -55,6 +55,9 @@ class BerufsbildungEntity
         return new BerufsbildungEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Berufsbildung|array $args Berufsbildung data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class BerufsbildungEntity
         }
     }
 
+    /**
+     * @return Berufsbildung|array The current Berufsbildung data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Berufsbildung fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class BerufsbildungEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Berufsbildung fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class BerufsbildungEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Berufsbildung.
+     *
+     * @param BerufsbildungLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed BerufsbildungLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Berufsbildung|array The loaded Berufsbildung as an assoc-array at the
+     *   SDK boundary; throws BerufsbildungDatenExporteError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class BerufsbildungEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Berufsbildung items matching the given filter.
+     *
+     * @param BerufsbildungListMatch|array|null $reqmatch Match filter (any subset
+     *   of Berufsbildung fields) as an assoc-array; BerufsbildungListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Berufsbildung[]|array A list of Berufsbildung items as assoc-arrays at
+     *   the SDK boundary; throws BerufsbildungDatenExporteError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class BerufsbildungEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

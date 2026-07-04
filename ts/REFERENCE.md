@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `BerufsbildungDatenExporteSDK.test()`.
 ## BerufsbildungEntity
 
 ```ts
-const berufsbildung = client.Berufsbildung()
+const berufsbildung = client.berufsbildung
 ```
 
 ### Fields
@@ -126,7 +125,7 @@ const berufsbildung = client.Berufsbildung()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Berufsbildung().list()
+const results = await client.berufsbildung.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -134,7 +133,7 @@ const results = await client.Berufsbildung().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Berufsbildung().load({ id: 'berufsbildung_id' })
+const result = await client.berufsbildung.load({ id: 'berufsbildung_id' })
 ```
 
 ### Common Methods

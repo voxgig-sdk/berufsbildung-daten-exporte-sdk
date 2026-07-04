@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch BerufsbildungLoadMatch
+---@param ctrl? table
+---@return Berufsbildung
+---@return string? err
 function BerufsbildungEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch BerufsbildungListMatch
+---@param ctrl? table
+---@return Berufsbildung[]
+---@return string? err
 function BerufsbildungEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

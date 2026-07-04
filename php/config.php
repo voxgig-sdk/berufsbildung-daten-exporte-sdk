@@ -20,9 +20,6 @@ class BerufsbildungDatenExporteConfig
             ],
             "options" => [
                 "base" => "https://data.tg.ch/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -176,6 +173,7 @@ class BerufsbildungDatenExporteConfig
                         'orig' => 'format',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

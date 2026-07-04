@@ -45,6 +45,7 @@ class BerufsbildungEntity
     end
   end
 
+  # @return [Berufsbildung, Hash] the current Berufsbildung data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class BerufsbildungEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Berufsbildung fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Berufsbildung.
+  #
+  # @param reqmatch [BerufsbildungLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Berufsbildung, Hash] the loaded Berufsbildung; raises BerufsbildungDatenExporteError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class BerufsbildungEntity
 
 
   
+  # List Berufsbildung items matching the given filter.
+  #
+  # @param reqmatch [BerufsbildungListMatch, Hash, nil] match filter (any subset of Berufsbildung fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Berufsbildung>, Array] the matching Berufsbildung items; raises BerufsbildungDatenExporteError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

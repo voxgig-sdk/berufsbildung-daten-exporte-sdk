@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## BerufsbildungEntity
 
 ```lua
-local berufsbildung = client:Berufsbildung(nil)
+local berufsbildung = client:berufsbildung(nil)
 ```
 
 ### Fields
@@ -100,7 +99,7 @@ local berufsbildung = client:Berufsbildung(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Berufsbildung():list()
+local results, err = client:berufsbildung():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -108,7 +107,7 @@ local results, err = client:Berufsbildung():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Berufsbildung():load({ id = "berufsbildung_id" })
+local result, err = client:berufsbildung():load({ id = "berufsbildung_id" })
 ```
 
 ### Common Methods

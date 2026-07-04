@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://data.tg.ch/api",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -171,6 +168,7 @@ def make_config():
                       "orig": "format",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

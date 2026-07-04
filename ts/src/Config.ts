@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://data.tg.ch/api',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -200,7 +196,8 @@ class Config {
                     "name": "format",
                     "orig": "format",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

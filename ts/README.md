@@ -9,9 +9,12 @@ The TypeScript SDK for the BerufsbildungDatenExporte API — a type-safe, entity
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/berufsbildung-daten-exporte
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { BerufsbildungDatenExporteSDK } from 'berufsbildung-daten-exporte'
+import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte'
 
-const client = new BerufsbildungDatenExporteSDK({
-  apikey: process.env.BERUFSBILDUNG-DATEN-EXPORTE_APIKEY,
-})
+const client = new BerufsbildungDatenExporteSDK()
 ```
 
 ### 2. List berufsbildungs
 
 ```ts
-const result = await client.Berufsbildung().list()
+const result = await client.berufsbildung.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +43,7 @@ if (result.ok) {
 ### 3. Load a berufsbildung
 
 ```ts
-const result = await client.Berufsbildung().load({ id: 'example_id' })
+const result = await client.berufsbildung.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = BerufsbildungDatenExporteSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.berufsbildung.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new BerufsbildungDatenExporteSDK({ apikey: '...' })
+const client = new BerufsbildungDatenExporteSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.berufsbildung
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new BerufsbildungDatenExporteSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -145,8 +145,7 @@ const client = new BerufsbildungDatenExporteSDK({
 Create a `.env.local` file at the project root:
 
 ```
-BERUFSBILDUNG-DATEN-EXPORTE_TEST_LIVE=TRUE
-BERUFSBILDUNG-DATEN-EXPORTE_APIKEY=<your-key>
+BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new BerufsbildungDatenExporteSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new BerufsbildungDatenExporteSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -278,7 +275,7 @@ API path: `/explore/v2.1/catalog/datasets/dek-abb-1/records`
 
 ### Berufsbildung
 
-Create an instance: `const berufsbildung = client.Berufsbildung()`
+Create an instance: `const berufsbildung = client.berufsbildung`
 
 #### Operations
 
@@ -296,13 +293,13 @@ Create an instance: `const berufsbildung = client.Berufsbildung()`
 #### Example: Load
 
 ```ts
-const berufsbildung = await client.Berufsbildung().load({ id: 'berufsbildung_id' })
+const berufsbildung = await client.berufsbildung.load({ id: 'berufsbildung_id' })
 ```
 
 #### Example: List
 
 ```ts
-const berufsbildungs = await client.Berufsbildung().list()
+const berufsbildungs = await client.berufsbildung.list()
 ```
 
 
@@ -363,7 +360,7 @@ berufsbildung-daten-exporte/
 Import the SDK from the package root:
 
 ```ts
-import { BerufsbildungDatenExporteSDK } from 'berufsbildung-daten-exporte'
+import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte'
 ```
 
 ### Entity state
@@ -373,11 +370,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const berufsbildung = client.berufsbildung
+await berufsbildung.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// berufsbildung.data() now returns the loaded berufsbildung data
+// berufsbildung.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

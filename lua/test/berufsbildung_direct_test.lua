@@ -117,14 +117,12 @@ function berufsbildung_direct_setup(mockres)
   local env = runner.env_override({
     ["BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID"] = {},
     ["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] = "FALSE",
-    ["BERUFSBILDUNGDATENEXPORTE_APIKEY"] = "NONE",
   })
 
   local live = env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["BERUFSBILDUNGDATENEXPORTE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

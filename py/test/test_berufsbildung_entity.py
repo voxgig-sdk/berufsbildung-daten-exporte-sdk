@@ -50,14 +50,12 @@ class TestBerufsbildungEntity:
         berufsbildung_ref01_ent = client.Berufsbildung(None)
         berufsbildung_ref01_match = {}
 
-        berufsbildung_ref01_list_result, err = berufsbildung_ref01_ent.list(berufsbildung_ref01_match, None)
-        assert err is None
+        berufsbildung_ref01_list_result = berufsbildung_ref01_ent.list(berufsbildung_ref01_match, None)
         assert isinstance(berufsbildung_ref01_list_result, list)
 
         # LOAD
         berufsbildung_ref01_match_dt0 = {}
-        berufsbildung_ref01_data_dt0_loaded, err = berufsbildung_ref01_ent.load(berufsbildung_ref01_match_dt0, None)
-        assert err is None
+        berufsbildung_ref01_data_dt0_loaded = berufsbildung_ref01_ent.load(berufsbildung_ref01_match_dt0, None)
         assert berufsbildung_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _berufsbildung_basic_setup(extra):
         "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID": idmap,
         "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE": "FALSE",
         "BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN": "FALSE",
-        "BERUFSBILDUNGDATENEXPORTE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _berufsbildung_basic_setup(extra):
     if env.get("BERUFSBILDUNGDATENEXPORTE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("BERUFSBILDUNGDATENEXPORTE_APIKEY"),
             },
             extra or {},
         ])

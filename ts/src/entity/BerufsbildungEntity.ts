@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Berufsbildung,
+  BerufsbildungLoadMatch,
+  BerufsbildungListMatch,
+} from '../BerufsbildungDatenExporteTypes'
 
 // TODO: needs Entity superclass
-class BerufsbildungEntity extends BerufsbildungDatenExporteEntityBase {
+class BerufsbildungEntity extends BerufsbildungDatenExporteEntityBase<Berufsbildung> {
 
   constructor(client: BerufsbildungDatenExporteSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class BerufsbildungEntity extends BerufsbildungDatenExporteEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: BerufsbildungLoadMatch, ctrl?: Control): Promise<Berufsbildung> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class BerufsbildungEntity extends BerufsbildungDatenExporteEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Berufsbildung> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: BerufsbildungListMatch, ctrl?: Control): Promise<Berufsbildung[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class BerufsbildungEntity extends BerufsbildungDatenExporteEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Berufsbildung[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

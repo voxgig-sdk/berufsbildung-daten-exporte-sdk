@@ -50,14 +50,12 @@ class BerufsbildungEntityTest extends TestCase
         $berufsbildung_ref01_ent = $client->Berufsbildung(null);
         $berufsbildung_ref01_match = [];
 
-        [$berufsbildung_ref01_list_result, $err] = $berufsbildung_ref01_ent->list($berufsbildung_ref01_match, null);
-        $this->assertNull($err);
+        $berufsbildung_ref01_list_result = $berufsbildung_ref01_ent->list($berufsbildung_ref01_match, null);
         $this->assertIsArray($berufsbildung_ref01_list_result);
 
         // LOAD
         $berufsbildung_ref01_match_dt0 = [];
-        [$berufsbildung_ref01_data_dt0_loaded, $err] = $berufsbildung_ref01_ent->load($berufsbildung_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $berufsbildung_ref01_data_dt0_loaded = $berufsbildung_ref01_ent->load($berufsbildung_ref01_match_dt0, null);
         $this->assertNotNull($berufsbildung_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function berufsbildung_basic_setup($extra)
         "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID" => $idmap,
         "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE" => "FALSE",
         "BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN" => "FALSE",
-        "BERUFSBILDUNGDATENEXPORTE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function berufsbildung_basic_setup($extra)
     if ($env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["BERUFSBILDUNGDATENEXPORTE_APIKEY"],
             ],
             $extra ?? [],
         ]);

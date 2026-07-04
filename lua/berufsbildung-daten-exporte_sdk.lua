@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:berufsbildung():list() / client:berufsbildung():load({ id = ... })
+function BerufsbildungDatenExporteSDK:berufsbildung(data)
+  local EntityMod = require("entity.berufsbildung_entity")
+  if data == nil then
+    if self._berufsbildung == nil then
+      self._berufsbildung = EntityMod.new(self, nil)
+    end
+    return self._berufsbildung
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:berufsbildung() instead.
 function BerufsbildungDatenExporteSDK:Berufsbildung(data)
   local EntityMod = require("entity.berufsbildung_entity")
   return EntityMod.new(self, data)

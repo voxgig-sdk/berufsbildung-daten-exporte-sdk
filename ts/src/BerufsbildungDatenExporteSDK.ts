@@ -2,6 +2,8 @@
 
 import { BerufsbildungEntity } from './entity/BerufsbildungEntity'
 
+export type * from './BerufsbildungDatenExporteTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class BerufsbildungDatenExporteSDK {
 
 
 
+  _berufsbildung?: BerufsbildungEntity
+
+  // Idiomatic facade: `client.berufsbildung.list()` / `client.berufsbildung.load({ id })`.
+  get berufsbildung(): BerufsbildungEntity {
+    return (this._berufsbildung ??= new BerufsbildungEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.berufsbildung` instead. */
   Berufsbildung(data?: any) {
     const self = this
     return new BerufsbildungEntity(self,data)

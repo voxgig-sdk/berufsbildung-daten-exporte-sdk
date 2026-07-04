@@ -195,14 +195,12 @@ func berufsbildungDirectSetup(mockres any) *berufsbildungDirectSetupResult {
 	env := envOverride(map[string]any{
 		"BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID": map[string]any{},
 		"BERUFSBILDUNGDATENEXPORTE_TEST_LIVE":    "FALSE",
-		"BERUFSBILDUNGDATENEXPORTE_APIKEY":       "NONE",
 	})
 
 	live := env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["BERUFSBILDUNGDATENEXPORTE_APIKEY"],
 		}
 		client := sdk.NewBerufsbildungDatenExporteSDK(mergedOpts)
 

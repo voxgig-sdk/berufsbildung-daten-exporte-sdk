@@ -10,26 +10,24 @@ This is an unofficial SDK for the Berufsbildung Daten Exporte public API, genera
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/berufsbildung-daten-exporte` | `npm install @voxgig-sdk/berufsbildung-daten-exporte` |
-| Python | `voxgig-sdk-berufsbildung-daten-exporte` | `pip install voxgig-sdk-berufsbildung-daten-exporte` |
-| PHP | `voxgig-sdk/berufsbildung-daten-exporte` | `composer require voxgig-sdk/berufsbildung-daten-exporte` |
-| Golang | `github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go` | `go get github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go` |
-| Ruby | `voxgig-sdk-berufsbildung-daten-exporte` | `gem install voxgig-sdk-berufsbildung-daten-exporte` |
-| Lua | `voxgig-sdk-berufsbildung-daten-exporte` | `luarocks install voxgig-sdk-berufsbildung-daten-exporte` |
+| TypeScript | `@voxgig-sdk/berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
+| Python | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
+| PHP | `voxgig-sdk/berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go` | `go get github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go@latest` |
+| Ruby | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
+| Lua | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { BerufsbildungDatenExporteSDK } from 'berufsbildung-daten-exporte'
+import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte'
 
-const client = new BerufsbildungDatenExporteSDK({
-  apikey: process.env.BERUFSBILDUNG-DATEN-EXPORTE_APIKEY,
-})
+const client = new BerufsbildungDatenExporteSDK()
 
 // List all berufsbildungs
-const berufsbildungs = await client.Berufsbildung().list()
+const berufsbildungs = await client.berufsbildung.list()
 console.log(berufsbildungs.data)
 ```
 
@@ -71,7 +69,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Berufsbildung** |  | `/explore/v2.1/catalog/datasets/dek-abb-1/records` |
+| **Berufsbildung** | The Berufsbildung entity (list, load). | `/explore/v2.1/catalog/datasets/dek-abb-1/records` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -81,19 +79,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
-import os
 from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
 
-client = BerufsbildungDatenExporteSDK({
-    "apikey": os.environ.get("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
-})
+client = BerufsbildungDatenExporteSDK()
 
 # List all berufsbildungs
-berufsbildungs, err = client.Berufsbildung().list()
+berufsbildungs = client.berufsbildung.list()
 print(berufsbildungs)
 
 # Load a specific berufsbildung
-berufsbildung, err = client.Berufsbildung().load({"id": "example_id"})
+berufsbildung = client.berufsbildung.load({"id": "example_id"})
 print(berufsbildung)
 ```
 
@@ -103,16 +98,14 @@ print(berufsbildung)
 <?php
 require_once 'berufsbildungdatenexporte_sdk.php';
 
-$client = new BerufsbildungDatenExporteSDK([
-    "apikey" => getenv("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
-]);
+$client = new BerufsbildungDatenExporteSDK();
 
-// List all berufsbildungs
-[$berufsbildungs, $err] = $client->Berufsbildung()->list();
+// List all berufsbildungs (throws on error)
+$berufsbildungs = $client->berufsbildung()->list();
 print_r($berufsbildungs);
 
 // Load a specific berufsbildung
-[$berufsbildung, $err] = $client->Berufsbildung()->load(["id" => "example_id"]);
+$berufsbildung = $client->berufsbildung()->load(["id" => "example_id"]);
 print_r($berufsbildung);
 ```
 
@@ -121,9 +114,7 @@ print_r($berufsbildung);
 ```go
 import sdk "github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go"
 
-client := sdk.NewBerufsbildungDatenExporteSDK(map[string]any{
-    "apikey": os.Getenv("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
-})
+client := sdk.New()
 
 // List all berufsbildungs
 berufsbildungs, err := client.Berufsbildung(nil).List(nil, nil)
@@ -135,16 +126,14 @@ fmt.Println(berufsbildungs)
 ```ruby
 require_relative "BerufsbildungDatenExporte_sdk"
 
-client = BerufsbildungDatenExporteSDK.new({
-  "apikey" => ENV["BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"],
-})
+client = BerufsbildungDatenExporteSDK.new
 
 # List all berufsbildungs
-berufsbildungs, err = client.Berufsbildung().list
+berufsbildungs = client.berufsbildung.list
 puts berufsbildungs
 
 # Load a specific berufsbildung
-berufsbildung, err = client.Berufsbildung().load({ "id" => "example_id" })
+berufsbildung = client.berufsbildung.load({ "id" => "example_id" })
 puts berufsbildung
 ```
 
@@ -153,16 +142,14 @@ puts berufsbildung
 ```lua
 local sdk = require("berufsbildung-daten-exporte_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("BERUFSBILDUNG-DATEN-EXPORTE_APIKEY"),
-})
+local client = sdk.new()
 
 -- List all berufsbildungs
-local berufsbildungs, err = client:Berufsbildung():list()
+local berufsbildungs, err = client:berufsbildung():list()
 print(berufsbildungs)
 
 -- Load a specific berufsbildung
-local berufsbildung, err = client:Berufsbildung():load({ id = "example_id" })
+local berufsbildung, err = client:berufsbildung():load({ id = "example_id" })
 print(berufsbildung)
 ```
 
@@ -175,7 +162,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = BerufsbildungDatenExporteSDK.test()
-const result = await client.Berufsbildung().load({ id: 'test01' })
+const result = await client.berufsbildung.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -183,14 +170,14 @@ const result = await client.Berufsbildung().load({ id: 'test01' })
 
 ```python
 client = BerufsbildungDatenExporteSDK.test()
-result, err = client.Berufsbildung().load({"id": "test01"})
+result = client.berufsbildung.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = BerufsbildungDatenExporteSDK::test();
-[$result, $err] = $client->Berufsbildung()->load(["id" => "test01"]);
+$result = $client->berufsbildung()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -206,14 +193,14 @@ result, err := client.Berufsbildung(nil).Load(
 
 ```ruby
 client = BerufsbildungDatenExporteSDK.test
-result, err = client.Berufsbildung().load({ "id" => "test01" })
+result = client.berufsbildung.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Berufsbildung():load({ id = "test01" })
+local result, err = client:berufsbildung():load({ id = "test01" })
 ```
 
 ## How it works
@@ -266,7 +253,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -275,7 +262,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -293,7 +280,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

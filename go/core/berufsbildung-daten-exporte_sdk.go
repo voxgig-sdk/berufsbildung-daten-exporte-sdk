@@ -245,6 +245,9 @@ func (sdk *BerufsbildungDatenExporteSDK) Direct(fetchargs map[string]any) (map[s
 }
 
 
+// Berufsbildung returns a Berufsbildung entity bound to this client.
+// Idiomatic usage: client.Berufsbildung(nil).List(nil, nil) or
+// client.Berufsbildung(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *BerufsbildungDatenExporteSDK) Berufsbildung(data map[string]any) BerufsbildungDatenExporteEntity {
 	return NewBerufsbildungEntityFunc(sdk, data)
 }
