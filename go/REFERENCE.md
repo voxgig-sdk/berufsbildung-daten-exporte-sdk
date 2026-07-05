@@ -97,7 +97,7 @@ berufsbildung := client.Berufsbildung(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `record` | ``$OBJECT`` | No |  |
+| `record` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -114,7 +114,7 @@ results, err := client.Berufsbildung(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Berufsbildung(nil).Load(map[string]any{"id": "berufsbildung_id"}, nil)
+result, err := client.Berufsbildung(nil).Load(nil, nil)
 ```
 
 ### Common Methods

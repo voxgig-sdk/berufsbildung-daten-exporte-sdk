@@ -26,7 +26,7 @@ BerufsbildungLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Berufsbildung#list (any subset of Berufsbildung fields).
+# Request payload for Berufsbildung#list.
 #
 # @!attribute [rw] record
 #   @return [Hash, nil]

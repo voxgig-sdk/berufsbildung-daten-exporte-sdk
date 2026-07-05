@@ -8,7 +8,7 @@ Complete API reference for the BerufsbildungDatenExporte Python SDK.
 ### Constructor
 
 ```python
-from berufsbildung-daten-exporte_sdk import BerufsbildungDatenExporteSDK
+from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
 
 client = BerufsbildungDatenExporteSDK(options)
 ```
@@ -87,16 +87,16 @@ berufsbildung = client.Berufsbildung()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `record` | ``$OBJECT`` | No |  |
+| `record` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Berufsbildung().list({})
+results = client.Berufsbildung().list()
 for berufsbildung in results:
     print(berufsbildung)
 ```
@@ -106,7 +106,7 @@ for berufsbildung in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Berufsbildung().load({"id": "berufsbildung_id"})
+result = client.Berufsbildung().load()
 ```
 
 ### Common Methods

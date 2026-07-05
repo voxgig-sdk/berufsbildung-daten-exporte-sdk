@@ -6,6 +6,21 @@ This is an unofficial SDK for the Berufsbildung Daten Exporte public API, genera
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
+## Entities, not endpoints
+
+This SDK exposes the API as a small set of **semantic entities** — Berufsbildung — that you
+call directly, instead of assembling URL paths and query strings. Entities are
+**Capitalised** to mark them as the primary surface, each with the operations they
+support (`list`, `load`):
+
+```ts
+const client = new BerufsbildungDatenExporteSDK()
+const items = await client.Berufsbildung().list()
+```
+
+Thinking in entities keeps the mental model small — for people and AI agents alike —
+rather than reasoning about raw HTTP routes and query parameters.
+
 ## Packages
 
 | Language | Package | Install |
@@ -73,8 +88,8 @@ The API exposes one entity:
 | --- | --- | --- |
 | **Berufsbildung** | The Berufsbildung entity (list, load). | `/explore/v2.1/catalog/datasets/dek-abb-1/records` |
 
-Each entity supports the following operations where available: **load**,
-**list**, **create**, **update**, and **remove**.
+The operations available across these entities are **load**, **list** — see each entity's
+own list above for exactly which it supports.
 
 ## Quickstart in other languages
 
@@ -86,12 +101,12 @@ from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
 client = BerufsbildungDatenExporteSDK()
 
 # List all berufsbildungs (returns a list, raises on error)
-berufsbildungs = client.Berufsbildung().list({})
+berufsbildungs = client.Berufsbildung().list()
 for berufsbildung in berufsbildungs:
     print(berufsbildung)
 
 # Load a specific berufsbildung (returns the record, raises on error)
-berufsbildung = client.Berufsbildung().load({"id": "example_id"})
+berufsbildung = client.Berufsbildung().load()
 print(berufsbildung)
 ```
 
@@ -108,7 +123,7 @@ $berufsbildungs = $client->Berufsbildung()->list();
 print_r($berufsbildungs);
 
 // Load a specific berufsbildung (returns the bare record; throws on error)
-$berufsbildung = $client->Berufsbildung()->load(["id" => "example_id"]);
+$berufsbildung = $client->Berufsbildung()->load();
 print_r($berufsbildung);
 ```
 
@@ -136,7 +151,7 @@ berufsbildungs = client.Berufsbildung.list
 puts berufsbildungs
 
 # Load a specific berufsbildung (returns the bare record; raises on error)
-berufsbildung = client.Berufsbildung.load({ "id" => "example_id" })
+berufsbildung = client.Berufsbildung.load()
 puts berufsbildung
 ```
 
@@ -152,7 +167,7 @@ local berufsbildungs, err = client:Berufsbildung():list()
 print(berufsbildungs)
 
 -- Load a specific berufsbildung
-local berufsbildung, err = client:Berufsbildung():load({ id = "example_id" })
+local berufsbildung, err = client:Berufsbildung():load()
 print(berufsbildung)
 ```
 
@@ -165,7 +180,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = BerufsbildungDatenExporteSDK.test()
-const berufsbildung = await client.Berufsbildung().load({ id: 'test01' })
+const berufsbildung = await client.Berufsbildung().list()
 // berufsbildung is a bare Berufsbildung populated with mock data
 console.log(berufsbildung)
 ```
@@ -174,7 +189,7 @@ console.log(berufsbildung)
 
 ```python
 client = BerufsbildungDatenExporteSDK.test()
-berufsbildung = client.Berufsbildung().load({"id": "test01"})
+berufsbildung = client.Berufsbildung().list()
 print(berufsbildung)
 ```
 
@@ -183,17 +198,17 @@ print(berufsbildung)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = BerufsbildungDatenExporteSDK::test([
-    "entity" => ["berufsbildung" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["berufsbildung" => ["test01" => []]],
 ]);
-$berufsbildung = $client->Berufsbildung()->load(["id" => "test01"]);
+$berufsbildung = $client->Berufsbildung()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Berufsbildung(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+result, err := client.Berufsbildung(nil).List(
+    nil, nil,
 )
 ```
 
@@ -202,41 +217,19 @@ result, err := client.Berufsbildung(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = BerufsbildungDatenExporteSDK.test({
-  "entity" => { "berufsbildung" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "berufsbildung" => { "test01" => {} } },
 })
-berufsbildung = client.Berufsbildung.load({ "id" => "test01" })
+berufsbildung = client.Berufsbildung.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Berufsbildung():load({ id = "test01" })
+local result, err = client:Berufsbildung():list()
 ```
 
-## How it works
-
-Every SDK call runs the same five-stage pipeline:
-
-1. **Point** — resolve the API endpoint from the operation definition.
-2. **Spec** — build the HTTP specification (URL, method, headers, body).
-3. **Request** — send the HTTP request.
-4. **Response** — receive and parse the response.
-5. **Result** — extract the result data for the caller.
-
-A feature hook fires at each stage (e.g. `PrePoint`, `PreSpec`,
-`PreRequest`), so features can inspect or modify the pipeline without
-forking the SDK.
-
-### Features
-
-| Feature | Purpose |
-| --- | --- |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-
-Pass custom features via the `extend` option at construction time.
-
-### Direct and Prepare
+## Direct and prepare
 
 For endpoints the entity model doesn't cover, use the low-level methods:
 
@@ -309,6 +302,31 @@ local result, err = client:direct({
   params = { id = "example" },
 })
 ```
+
+## Advanced
+
+> Everyday use only needs the sections above. This explains the internals
+> behind every call — relevant when writing custom features.
+
+Every SDK call runs the same five-stage pipeline:
+
+1. **Point** — resolve the API endpoint from the operation definition.
+2. **Spec** — build the HTTP specification (URL, method, headers, body).
+3. **Request** — send the HTTP request.
+4. **Response** — receive and parse the response.
+5. **Result** — extract the result data for the caller.
+
+A feature hook fires at each stage (e.g. `PrePoint`, `PreSpec`,
+`PreRequest`), so features can inspect or modify the pipeline without
+forking the SDK.
+
+### Features
+
+| Feature | Purpose |
+| --- | --- |
+| **TestFeature** | In-memory mock transport for testing without a live server |
+
+Pass custom features via the `extend` option at construction time.
 
 ## Per-language documentation
 

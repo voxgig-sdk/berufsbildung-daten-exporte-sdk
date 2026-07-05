@@ -13,6 +13,7 @@
 ---@field format string
 
 ---@class BerufsbildungListMatch
+---@field record? table
 
 local M = {}
 

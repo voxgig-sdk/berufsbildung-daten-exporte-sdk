@@ -13,5 +13,7 @@ export interface BerufsbildungLoadMatch {
   format: string
 }
 
-export type BerufsbildungListMatch = Partial<Berufsbildung>
+export interface BerufsbildungListMatch {
+  record?: Record<string, any>
+}
 

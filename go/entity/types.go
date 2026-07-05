@@ -18,8 +18,7 @@ type BerufsbildungLoadMatch struct {
 	Format string `json:"format"`
 }
 
-// BerufsbildungListMatch mirrors the berufsbildung fields as an all-optional match
-// filter (Go analog of Partial<Berufsbildung>).
+// BerufsbildungListMatch is the typed request payload for Berufsbildung.ListTyped.
 type BerufsbildungListMatch struct {
 	Record *map[string]any `json:"record,omitempty"`
 }

@@ -24,7 +24,7 @@ class BerufsbildungLoadMatch
     public string $format;
 }
 
-/** Match filter for Berufsbildung#list (any subset of Berufsbildung fields). */
+/** Request payload for Berufsbildung#list. */
 class BerufsbildungListMatch
 {
     public ?array $record = null;

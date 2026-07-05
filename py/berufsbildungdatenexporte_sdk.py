@@ -221,7 +221,7 @@ class BerufsbildungDatenExporteSDK:
 
 
     def Berufsbildung(self, data=None) -> "BerufsbildungEntity":
-        """Entity factory: client.Berufsbildung().list({}) / client.Berufsbildung().load({"id": ...})."""
+        """Entity factory: client.Berufsbildung().list() / client.Berufsbildung().load({"id": ...})."""
         from entity.berufsbildung_entity import BerufsbildungEntity
         return BerufsbildungEntity(self, data)
 

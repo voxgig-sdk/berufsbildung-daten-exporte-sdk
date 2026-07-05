@@ -90,7 +90,7 @@ local berufsbildung = client:Berufsbildung(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `record` | ``$OBJECT`` | No |  |
+| `record` | `table` | No |  |
 
 ### Operations
 
@@ -107,7 +107,7 @@ local results, err = client:Berufsbildung():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Berufsbildung():load({ id = "berufsbildung_id" })
+local result, err = client:Berufsbildung():load()
 ```
 
 ### Common Methods

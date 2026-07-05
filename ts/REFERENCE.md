@@ -116,7 +116,7 @@ const berufsbildung = client.Berufsbildung()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `record` | ``$OBJECT`` | No |  |
+| `record` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -133,7 +133,7 @@ const results = await client.Berufsbildung().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Berufsbildung().load({ id: 'berufsbildung_id' })
+const result = await client.Berufsbildung().load()
 ```
 
 ### Common Methods
