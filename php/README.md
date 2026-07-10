@@ -47,10 +47,12 @@ try {
 
 ### 3. Load a berufsbildung
 
+Berufsbildung is nested under format, so provide the `format`.
+
 ```php
 try {
     // load() returns the bare Berufsbildung record (throws on error).
-    $berufsbildung = $client->Berufsbildung()->load();
+    $berufsbildung = $client->Berufsbildung()->load(["format" => "example_format"]);
     print_r($berufsbildung);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -291,7 +293,7 @@ Create an instance: `$berufsbildung = $client->Berufsbildung();`
 
 ```php
 // load() returns the bare Berufsbildung record (throws on error).
-$berufsbildung = $client->Berufsbildung()->load();
+$berufsbildung = $client->Berufsbildung()->load(["format" => "format"]);
 ```
 
 #### Example: List

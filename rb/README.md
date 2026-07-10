@@ -46,10 +46,12 @@ end
 
 ### 3. Load a berufsbildung
 
+Berufsbildung is nested under format, so provide the `format`.
+
 ```ruby
 begin
   # load returns the bare Berufsbildung record (raises on error).
-  berufsbildung = client.Berufsbildung.load()
+  berufsbildung = client.Berufsbildung.load({ "format" => "example_format" })
   puts berufsbildung
 rescue => err
   warn "load failed: #{err}"
@@ -281,7 +283,7 @@ Create an instance: `berufsbildung = client.Berufsbildung`
 
 ```ruby
 # load returns the bare Berufsbildung record (raises on error).
-berufsbildung = client.Berufsbildung.load()
+berufsbildung = client.Berufsbildung.load({ "format" => "format" })
 ```
 
 #### Example: List

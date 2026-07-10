@@ -109,7 +109,7 @@ $results = $client->Berufsbildung()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Berufsbildung()->load();
+$result = $client->Berufsbildung()->load(["format" => "format"]);
 ```
 
 ### Common Methods

@@ -107,7 +107,7 @@ local results, err = client:Berufsbildung():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Berufsbildung():load()
+local result, err = client:Berufsbildung():load({ format = "format" })
 ```
 
 ### Common Methods

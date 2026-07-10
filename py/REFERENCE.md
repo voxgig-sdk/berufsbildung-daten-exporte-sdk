@@ -106,7 +106,7 @@ for berufsbildung in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Berufsbildung().load()
+result = client.Berufsbildung().load({"format": "format"})
 ```
 
 ### Common Methods

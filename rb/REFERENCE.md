@@ -110,7 +110,7 @@ results = client.Berufsbildung.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Berufsbildung.load()
+result = client.Berufsbildung.load({ "format" => "format" })
 ```
 
 ### Common Methods

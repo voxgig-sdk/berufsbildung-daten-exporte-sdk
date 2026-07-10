@@ -133,7 +133,7 @@ const results = await client.Berufsbildung().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Berufsbildung().load()
+const result = await client.Berufsbildung().load({ format: 'format' })
 ```
 
 ### Common Methods

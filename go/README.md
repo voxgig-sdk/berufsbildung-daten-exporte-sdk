@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single berufsbildung — the value is the loaded record.
-    berufsbildung, err := client.Berufsbildung(nil).Load(nil, nil)
+    berufsbildung, err := client.Berufsbildung(nil).Load(map[string]any{"format": "example_format"}, nil)
     if err != nil {
         panic(err)
     }
@@ -300,7 +300,7 @@ Create an instance: `berufsbildung := client.Berufsbildung(nil)`
 #### Example: Load
 
 ```go
-berufsbildung, err := client.Berufsbildung(nil).Load(nil, nil)
+berufsbildung, err := client.Berufsbildung(nil).Load(map[string]any{"format": "format"}, nil)
 if err != nil {
     panic(err)
 }

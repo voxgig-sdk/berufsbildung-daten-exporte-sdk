@@ -52,11 +52,12 @@ except Exception as err:
 
 ### 3. Load a berufsbildung
 
+Berufsbildung is nested under format, so provide the `format`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    berufsbildung = client.Berufsbildung().load()
+    berufsbildung = client.Berufsbildung().load({"format": "example_format"})
     print(berufsbildung)
 except Exception as err:
     print(f"load failed: {err}")
@@ -286,7 +287,7 @@ Create an instance: `berufsbildung = client.Berufsbildung()`
 #### Example: Load
 
 ```python
-berufsbildung = client.Berufsbildung().load()
+berufsbildung = client.Berufsbildung().load({"format": "format"})
 ```
 
 #### Example: List

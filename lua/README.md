@@ -49,8 +49,10 @@ end
 
 ### 3. Load a berufsbildung
 
+Berufsbildung is nested under format, so provide the `format`.
+
 ```lua
-local berufsbildung, err = client:Berufsbildung():load()
+local berufsbildung, err = client:Berufsbildung():load({ format = "example_format" })
 if err then error(err) end
 print(berufsbildung)
 ```
@@ -272,7 +274,7 @@ Create an instance: `local berufsbildung = client:Berufsbildung(nil)`
 #### Example: Load
 
 ```lua
-local berufsbildung, err = client:Berufsbildung():load()
+local berufsbildung, err = client:Berufsbildung():load({ format = "format" })
 ```
 
 #### Example: List

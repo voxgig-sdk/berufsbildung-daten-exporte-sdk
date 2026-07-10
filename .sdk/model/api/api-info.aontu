@@ -16,9 +16,9 @@ main: {
           url: "https://data.tg.ch/api"
         }
       ]
+      summary: "API zur Exportierung von Daten zu Lehrverträgen und Abschlüssen der Berufsbildung seit 2017, einschließlich Anzahl der Lehrverträge, neu registrierten Lehrverträgen und Abschlüssen der Qualifikationsverfahren nach Ausbildungsfeldern."
       title: "Berufsbildung Daten Exporte"
       version: "1.0.0"
+      website: "https://data.tg.ch"
     }
   }
-}
-
