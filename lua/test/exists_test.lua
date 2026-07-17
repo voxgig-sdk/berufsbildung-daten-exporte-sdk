@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- BerufsbildungDatenExporte SDK exists test
 
 local sdk = require("berufsbildung-daten-exporte_sdk")
 
