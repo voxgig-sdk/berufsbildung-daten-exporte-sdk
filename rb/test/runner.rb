@@ -23,8 +23,8 @@ module BerufsbildungDatenExporteTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("BERUFSBILDUNGDATENEXPORTE_TEST_LIVE")
-    override = getenv("BERUFSBILDUNGDATENEXPORTE_TEST_OVERRIDE")
+    live = getenv("BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE")
+    override = getenv("BERUFSBILDUNG_DATEN_EXPORTE_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module BerufsbildungDatenExporteTestRunner
       end
     end
 
-    explain = getenv("BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN")
-    m["BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("BERUFSBILDUNG_DATEN_EXPORTE_TEST_EXPLAIN")
+    m["BERUFSBILDUNG_DATEN_EXPORTE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

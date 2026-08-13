@@ -121,11 +121,11 @@ function berufsbildung_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID" => [],
-        "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE" => "FALSE",
+        "BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID" => [],
+        "BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] === "TRUE";
+    $live = $env["BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

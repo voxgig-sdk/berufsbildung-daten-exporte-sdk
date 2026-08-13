@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ BerufsbildungDatenExporteUtility.registrar = ->(u) {
   u.prepare_params = BerufsbildungDatenExporteUtilities::PrepareParams
   u.prepare_path = BerufsbildungDatenExporteUtilities::PreparePath
   u.prepare_query = BerufsbildungDatenExporteUtilities::PrepareQuery
+  u.graphql_body = BerufsbildungDatenExporteUtilities::GraphqlBody
+  u.graphql_errors = BerufsbildungDatenExporteUtilities::GraphqlErrors
   u.result_basic = BerufsbildungDatenExporteUtilities::ResultBasic
   u.result_body = BerufsbildungDatenExporteUtilities::ResultBody
   u.result_headers = BerufsbildungDatenExporteUtilities::ResultHeaders

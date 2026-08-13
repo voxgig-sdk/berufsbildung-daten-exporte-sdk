@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import BerufsbildungDatenExporteControl
-from core.error import BerufsbildungDatenExporteError
-from core.result import BerufsbildungDatenExporteResult
-from core.spec import BerufsbildungDatenExporteSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import BerufsbildungDatenExporteControl
+from projectname_sdk.core.error import BerufsbildungDatenExporteError
+from projectname_sdk.core.result import BerufsbildungDatenExporteResult
+from projectname_sdk.core.spec import BerufsbildungDatenExporteSpec
 
 
 # True when this SDK was generated with the named feature.

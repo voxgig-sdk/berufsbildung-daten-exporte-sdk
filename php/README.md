@@ -51,7 +51,7 @@ Berufsbildung is nested under format, so provide the `format`.
 
 ```php
 try {
-    // load() returns the bare Berufsbildung record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Berufsbildung record (throws on error).
     $berufsbildung = $client->Berufsbildung()->load(["format" => "example_format"]);
     print_r($berufsbildung);
 } catch (\Throwable $err) {
@@ -139,7 +139,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = BerufsbildungDatenExporteSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $berufsbildung = $client->Berufsbildung()->list();
 print_r($berufsbildung);
 ```
@@ -239,7 +240,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -292,7 +293,7 @@ Create an instance: `$berufsbildung = $client->Berufsbildung();`
 #### Example: Load
 
 ```php
-// load() returns the bare Berufsbildung record (throws on error).
+// load() returns the ENTITY — call data_get() for the Berufsbildung record (throws on error).
 $berufsbildung = $client->Berufsbildung()->load(["format" => "format"]);
 ```
 

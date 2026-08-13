@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import BerufsbildungDatenExporteSDK
-from core.error import BerufsbildungDatenExporteError
-from core.result import BerufsbildungDatenExporteResult
-from core.response import BerufsbildungDatenExporteResponse
-from core.spec import BerufsbildungDatenExporteSpec
-from feature.base_feature import BerufsbildungDatenExporteBaseFeature
+from projectname_sdk.core.error import BerufsbildungDatenExporteError
+from projectname_sdk.core.result import BerufsbildungDatenExporteResult
+from projectname_sdk.core.response import BerufsbildungDatenExporteResponse
+from projectname_sdk.core.spec import BerufsbildungDatenExporteSpec
+from projectname_sdk.feature.base_feature import BerufsbildungDatenExporteBaseFeature
 
 
 def _client():

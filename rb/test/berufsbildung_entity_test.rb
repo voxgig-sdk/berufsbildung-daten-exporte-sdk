@@ -62,7 +62,7 @@ class BerufsbildungEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -116,22 +116,22 @@ def berufsbildung_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID"]
+  entid_env_raw = ENV["BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID" => idmap,
-    "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE" => "FALSE",
-    "BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN" => "FALSE",
+    "BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID" => idmap,
+    "BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE" => "FALSE",
+    "BERUFSBILDUNG_DATEN_EXPORTE_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID"])
+    env["BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE"
+  if env["BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -140,13 +140,13 @@ def berufsbildung_basic_setup(extra)
     client = BerufsbildungDatenExporteSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE"
+  live = env["BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN"] == "TRUE",
+    explain: env["BERUFSBILDUNG_DATEN_EXPORTE_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

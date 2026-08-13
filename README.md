@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = BerufsbildungDatenExporteSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = BerufsbildungDatenExporteSDK.test({
+  entity: {
+    berufsbildung: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const berufsbildungs = await client.Berufsbildung().list()
-// berufsbildungs is an array of bare Berufsbildung records populated with mock data
+// berufsbildungs is an array of Berufsbildung entities, populated with mock data
+// — call berufsbildungs[0].data() for the record itself
 console.log(berufsbildungs)
 ```
 
@@ -110,7 +119,7 @@ import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-ex
 
 const client = new BerufsbildungDatenExporteSDK()
 
-// List all berufsbildungs (returns Berufsbildung[])
+// List all berufsbildungs (returns BerufsbildungEntity[] — .data() for the record)
 const berufsbildungs = await client.Berufsbildung().list()
 for (const berufsbildung of berufsbildungs) {
   console.log(berufsbildung)
@@ -197,7 +206,7 @@ $client = new BerufsbildungDatenExporteSDK();
 $berufsbildungs = $client->Berufsbildung()->list();
 print_r($berufsbildungs);
 
-// Load a specific berufsbildung (returns the bare record; throws on error)
+// Load a specific berufsbildung (returns the ENTITY; call data_get() for the record; throws on error)
 $berufsbildung = $client->Berufsbildung()->load(["format" => "example_format"]);
 print_r($berufsbildung);
 ```
@@ -237,7 +246,7 @@ client = BerufsbildungDatenExporteSDK.new
 berufsbildungs = client.Berufsbildung.list
 puts berufsbildungs
 
-# Load a specific berufsbildung (returns the bare record; raises on error)
+# Load a specific berufsbildung (returns the ENTITY; call data_get for the record)
 berufsbildung = client.Berufsbildung.load({ "format" => "example_format" })
 puts berufsbildung
 ```
@@ -374,6 +383,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://data.tg.ch](https://data.tg.ch)
 

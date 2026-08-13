@@ -121,6 +121,7 @@ module BerufsbildungDatenExporteConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/explore/v2.1/catalog/datasets/dek-abb-1/records",
                   "parts" => [
@@ -146,7 +147,7 @@ module BerufsbildungDatenExporteConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.records`",
                   },
                   "index$" => 0,
                 },
@@ -233,6 +234,7 @@ module BerufsbildungDatenExporteConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}",
                   "parts" => [

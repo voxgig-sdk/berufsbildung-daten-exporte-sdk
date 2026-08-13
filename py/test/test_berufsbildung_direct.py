@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from berufsbildungdatenexporte_sdk.utility.voxgig_struct import voxgig_struct as vs
 from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
-from core import helpers
+from berufsbildungdatenexporte_sdk.core import helpers
 from test import runner
 
 
@@ -105,11 +105,11 @@ def _berufsbildung_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID": {},
-        "BERUFSBILDUNGDATENEXPORTE_TEST_LIVE": "FALSE",
+        "BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID": {},
+        "BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("BERUFSBILDUNGDATENEXPORTE_TEST_LIVE") == "TRUE"
+    live = env.get("BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

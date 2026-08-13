@@ -11,6 +11,7 @@ guide: {
     }
     path: "/explore/v2.1/catalog/datasets/dek-abb-1/records": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.records`")|top
     }
   }
 

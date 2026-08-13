@@ -115,11 +115,11 @@ function berufsbildung_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID"] = {},
-    ["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] = "FALSE",
+    ["BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID"] = {},
+    ["BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["BERUFSBILDUNGDATENEXPORTE_TEST_LIVE"] == "TRUE"
+  local live = env["BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

@@ -35,7 +35,9 @@ const client = new BerufsbildungDatenExporteSDK()
 
 ### 2. List berufsbildung records
 
-`list()` resolves to an array of Berufsbildung objects — iterate it directly:
+`list()` resolves to an array of Berufsbildung ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const berufsbildungs = await client.Berufsbildung().list()
@@ -136,7 +138,8 @@ Create a mock client for unit testing — no server required:
 const client = BerufsbildungDatenExporteSDK.test()
 
 const berufsbildung = await client.Berufsbildung().list()
-// berufsbildung is a bare entity populated with mock response data
+// berufsbildung is the entity, populated with mock response data
+// — call berufsbildung.data() for the record itself
 console.log(berufsbildung)
 ```
 

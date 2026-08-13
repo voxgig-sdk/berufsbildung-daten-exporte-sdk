@@ -50,7 +50,7 @@ Berufsbildung is nested under format, so provide the `format`.
 
 ```ruby
 begin
-  # load returns the bare Berufsbildung record (raises on error).
+  # load returns the ENTITY — call data_get for the Berufsbildung record (raises on error).
   berufsbildung = client.Berufsbildung.load({ "format" => "example_format" })
   puts berufsbildung
 rescue => err
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = BerufsbildungDatenExporteSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 berufsbildung = client.Berufsbildung.list()
 puts berufsbildung
 ```
@@ -282,7 +283,7 @@ Create an instance: `berufsbildung = client.Berufsbildung`
 #### Example: Load
 
 ```ruby
-# load returns the bare Berufsbildung record (raises on error).
+# load returns the ENTITY — call data_get for the Berufsbildung record (raises on error).
 berufsbildung = client.Berufsbildung.load({ "format" => "format" })
 ```
 

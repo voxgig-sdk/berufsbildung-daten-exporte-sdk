@@ -19,11 +19,15 @@ import {
 describe('BerufsbildungDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when BERUFSBILDUNGDATENEXPORTE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('BERUFSBILDUNGDATENEXPORTE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new BerufsbildungDatenExporteSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -135,17 +139,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID': {},
-    'BERUFSBILDUNGDATENEXPORTE_TEST_LIVE': 'FALSE',
+    'BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID': {},
+    'BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.BERUFSBILDUNGDATENEXPORTE_TEST_LIVE
+  const live = 'TRUE' === env.BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE
 
   if (live) {
     const client = new BerufsbildungDatenExporteSDK({
     })
 
-    let idmap: any = env['BERUFSBILDUNGDATENEXPORTE_TEST_BERUFSBILDUNG_ENTID']
+    let idmap: any = env['BERUFSBILDUNG_DATEN_EXPORTE_TEST_BERUFSBILDUNG_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

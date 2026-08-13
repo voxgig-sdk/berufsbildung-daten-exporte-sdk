@@ -26,8 +26,8 @@ import {
 describe('BerufsbildungEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when BERUFSBILDUNGDATENEXPORTE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('BERUFSBILDUNGDATENEXPORTE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = BerufsbildungDatenExporteSDK.test()
@@ -63,7 +63,7 @@ describe('BerufsbildungEntity', async () => {
     const berufsbildung_ref01_ent = client.Berufsbildung()
     const berufsbildung_ref01_match: any = {}
 
-    const berufsbildung_ref01_list = await berufsbildung_ref01_ent.list(berufsbildung_ref01_match)
+    const berufsbildung_ref01_list = (await berufsbildung_ref01_ent.list(berufsbildung_ref01_match)).map((e: any) => e.data())
 
 
 

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'BerufsbildungDatenExporte',
   }
 
 
@@ -150,6 +150,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/explore/v2.1/catalog/datasets/dek-abb-1/records",
               "parts": [
@@ -175,7 +176,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.records`"
               },
               "index$": 0
             }
@@ -262,6 +263,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}",
               "parts": [

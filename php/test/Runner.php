@@ -43,8 +43,8 @@ class BerufsbildungDatenExporteTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('BERUFSBILDUNGDATENEXPORTE_TEST_LIVE');
-        $override = self::getenv('BERUFSBILDUNGDATENEXPORTE_TEST_OVERRIDE');
+        $live = self::getenv('BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE');
+        $override = self::getenv('BERUFSBILDUNG_DATEN_EXPORTE_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class BerufsbildungDatenExporteTestRunner
             }
         }
 
-        $explain = self::getenv('BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN');
+        $explain = self::getenv('BERUFSBILDUNG_DATEN_EXPORTE_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['BERUFSBILDUNGDATENEXPORTE_TEST_EXPLAIN'] = $explain;
+            $m['BERUFSBILDUNG_DATEN_EXPORTE_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

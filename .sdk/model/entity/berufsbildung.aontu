@@ -114,7 +114,7 @@ main: kit: entity: berufsbildung: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.records`"
           }
         }
       ]

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# BerufsbildungDatenExporte SDK exists test
 
 import pytest
 from berufsbildungdatenexporte_sdk import BerufsbildungDatenExporteSDK
