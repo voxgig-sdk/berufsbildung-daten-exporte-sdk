@@ -40,7 +40,7 @@ class BerufsbildungDatenExporteSDK
         $utility = new BerufsbildungDatenExporteUtility();
         $this->_utility = $utility;
 
-        $config = BerufsbildungDatenExporteConfig::make_config();
+        $config = BerufsbildungDatenExporteConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

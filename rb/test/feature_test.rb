@@ -15,7 +15,7 @@ require_relative "../BerufsbildungDatenExporte_sdk"
 module BerufsbildungDatenExporteFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = BerufsbildungDatenExporteConfig.make_config["feature"]
+    f = BerufsbildungDatenExporteConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

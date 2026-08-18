@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from berufsbildungdatenexporte_sdk.config import make_config
+from berufsbildungdatenexporte_sdk.config import shared_config
 from berufsbildungdatenexporte_sdk.features import _make_feature
 from berufsbildungdatenexporte_sdk.core.control import BerufsbildungDatenExporteControl
 from berufsbildungdatenexporte_sdk.core.error import BerufsbildungDatenExporteError
@@ -24,7 +24,7 @@ from berufsbildungdatenexporte_sdk.core.spec import BerufsbildungDatenExporteSpe
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 
