@@ -33,6 +33,9 @@ class BerufsbildungDatenExporteConfig
         return [
             "main" => [
                 "name" => "BerufsbildungDatenExporte",
+                "slug" => "berufsbildung-daten-exporte",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
