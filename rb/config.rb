@@ -28,6 +28,7 @@ module BerufsbildungDatenExporteConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
