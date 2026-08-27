@@ -20,11 +20,26 @@ type Berufsbildung struct {
 // BerufsbildungLoadMatch is the typed request payload for Berufsbildung.LoadTyped.
 type BerufsbildungLoadMatch struct {
 	Format string `json:"format"`
+	Delimiter *string `json:"delimiter,omitempty"`
+	Exclude *string `json:"exclude,omitempty"`
+	Lang *string `json:"lang,omitempty"`
+	Refine *string `json:"refine,omitempty"`
+	Select *string `json:"select,omitempty"`
+	Timezone *string `json:"timezone,omitempty"`
+	Where *string `json:"where,omitempty"`
 }
 
 // BerufsbildungListMatch is the typed request payload for Berufsbildung.ListTyped.
 type BerufsbildungListMatch struct {
-	Record *map[string]any `json:"record,omitempty"`
+	Exclude *string `json:"exclude,omitempty"`
+	Lang *string `json:"lang,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	OrderBy *string `json:"order_by,omitempty"`
+	Refine *string `json:"refine,omitempty"`
+	Select *string `json:"select,omitempty"`
+	Timezone *string `json:"timezone,omitempty"`
+	Where *string `json:"where,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

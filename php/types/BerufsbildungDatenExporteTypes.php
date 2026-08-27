@@ -22,11 +22,26 @@ class Berufsbildung
 class BerufsbildungLoadMatch
 {
     public string $format;
+    public ?string $delimiter = null;
+    public ?string $exclude = null;
+    public ?string $lang = null;
+    public ?string $refine = null;
+    public ?string $select = null;
+    public ?string $timezone = null;
+    public ?string $where = null;
 }
 
 /** Request payload for Berufsbildung#list. */
 class BerufsbildungListMatch
 {
-    public ?array $record = null;
+    public ?string $exclude = null;
+    public ?string $lang = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public ?string $order_by = null;
+    public ?string $refine = null;
+    public ?string $select = null;
+    public ?string $timezone = null;
+    public ?string $where = null;
 }
 

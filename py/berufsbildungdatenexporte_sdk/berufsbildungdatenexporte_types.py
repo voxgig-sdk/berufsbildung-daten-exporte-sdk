@@ -20,9 +20,27 @@ class Berufsbildung(TypedDict, total=False):
     record: dict
 
 
-class BerufsbildungLoadMatch(TypedDict):
+class BerufsbildungLoadMatchRequired(TypedDict):
     format: str
 
 
+class BerufsbildungLoadMatch(BerufsbildungLoadMatchRequired, total=False):
+    delimiter: str
+    exclude: str
+    lang: str
+    refine: str
+    select: str
+    timezone: str
+    where: str
+
+
 class BerufsbildungListMatch(TypedDict, total=False):
-    record: dict
+    exclude: str
+    lang: str
+    limit: int
+    offset: int
+    order_by: str
+    refine: str
+    select: str
+    timezone: str
+    where: str

@@ -21,17 +21,77 @@ Berufsbildung = Struct.new(
 #
 # @!attribute [rw] format
 #   @return [String]
+#
+# @!attribute [rw] delimiter
+#   @return [String, nil]
+#
+# @!attribute [rw] exclude
+#   @return [String, nil]
+#
+# @!attribute [rw] lang
+#   @return [String, nil]
+#
+# @!attribute [rw] refine
+#   @return [String, nil]
+#
+# @!attribute [rw] select
+#   @return [String, nil]
+#
+# @!attribute [rw] timezone
+#   @return [String, nil]
+#
+# @!attribute [rw] where
+#   @return [String, nil]
 BerufsbildungLoadMatch = Struct.new(
   :format,
+  :delimiter,
+  :exclude,
+  :lang,
+  :refine,
+  :select,
+  :timezone,
+  :where,
   keyword_init: true
 )
 
 # Request payload for Berufsbildung#list.
 #
-# @!attribute [rw] record
-#   @return [Hash, nil]
+# @!attribute [rw] exclude
+#   @return [String, nil]
+#
+# @!attribute [rw] lang
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] offset
+#   @return [Integer, nil]
+#
+# @!attribute [rw] order_by
+#   @return [String, nil]
+#
+# @!attribute [rw] refine
+#   @return [String, nil]
+#
+# @!attribute [rw] select
+#   @return [String, nil]
+#
+# @!attribute [rw] timezone
+#   @return [String, nil]
+#
+# @!attribute [rw] where
+#   @return [String, nil]
 BerufsbildungListMatch = Struct.new(
-  :record,
+  :exclude,
+  :lang,
+  :limit,
+  :offset,
+  :order_by,
+  :refine,
+  :select,
+  :timezone,
+  :where,
   keyword_init: true
 )
 

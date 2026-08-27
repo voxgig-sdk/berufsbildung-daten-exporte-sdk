@@ -11,9 +11,24 @@
 
 ---@class BerufsbildungLoadMatch
 ---@field format string
+---@field delimiter? string
+---@field exclude? string
+---@field lang? string
+---@field refine? string
+---@field select? string
+---@field timezone? string
+---@field where? string
 
 ---@class BerufsbildungListMatch
----@field record? table
+---@field exclude? string
+---@field lang? string
+---@field limit? number
+---@field offset? number
+---@field order_by? string
+---@field refine? string
+---@field select? string
+---@field timezone? string
+---@field where? string
 
 local M = {}
 

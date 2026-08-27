@@ -11,9 +11,24 @@ export interface Berufsbildung {
 
 export interface BerufsbildungLoadMatch {
   format: string
+  delimiter?: string
+  exclude?: string
+  lang?: string
+  refine?: string
+  select?: string
+  timezone?: string
+  where?: string
 }
 
 export interface BerufsbildungListMatch {
-  record?: Record<string, any>
+  exclude?: string
+  lang?: string
+  limit?: number
+  offset?: number
+  order_by?: string
+  refine?: string
+  select?: string
+  timezone?: string
+  where?: string
 }
 
