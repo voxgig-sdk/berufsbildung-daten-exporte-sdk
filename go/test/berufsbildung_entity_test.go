@@ -98,7 +98,7 @@ func TestBerufsbildungEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		berufsbildungRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.berufsbildung", setup.data)))
+		berufsbildungRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.berufsbildung")))
 		var berufsbildungRef01Data map[string]any
 		if len(berufsbildungRef01DataRaw) > 0 {
 			berufsbildungRef01Data = core.ToMapAny(berufsbildungRef01DataRaw[0][1])
@@ -157,7 +157,7 @@ func berufsbildungBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"berufsbildung01", "berufsbildung02", "berufsbildung03", "export01", "export02", "export03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -185,10 +185,22 @@ func berufsbildungBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["BERUFSBILDUNG_DATEN_EXPORTE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewBerufsbildungDatenExporteSDK(core.ToMapAny(mergedOpts))
 	}

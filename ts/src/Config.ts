@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -143,13 +154,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/explore/v2.1/catalog/datasets/dek-abb-1/records",
-              "parts": [
-                "explore",
-                "v2.1",
-                "catalog",
-                "datasets",
-                "dek-abb-1",
-                "records"
+              "segments": [
+                {
+                  "lit": "explore"
+                },
+                {
+                  "lit": "v2.1"
+                },
+                {
+                  "lit": "catalog"
+                },
+                {
+                  "lit": "datasets"
+                },
+                {
+                  "lit": "dek-abb-1"
+                },
+                {
+                  "lit": "records"
+                }
               ],
               "select": {
                 "exist": [
@@ -167,7 +190,15 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.records`"
-              }
+              },
+              "parts": [
+                "explore",
+                "v2.1",
+                "catalog",
+                "datasets",
+                "dek-abb-1",
+                "records"
+              ]
             }
           ]
         },
@@ -237,14 +268,28 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}",
-              "parts": [
-                "explore",
-                "v2.1",
-                "catalog",
-                "datasets",
-                "dek-abb-1",
-                "exports",
-                "{format}"
+              "segments": [
+                {
+                  "lit": "explore"
+                },
+                {
+                  "lit": "v2.1"
+                },
+                {
+                  "lit": "catalog"
+                },
+                {
+                  "lit": "datasets"
+                },
+                {
+                  "lit": "dek-abb-1"
+                },
+                {
+                  "lit": "exports"
+                },
+                {
+                  "var": "format"
+                }
               ],
               "select": {
                 "exist": [
@@ -261,7 +306,16 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "explore",
+                "v2.1",
+                "catalog",
+                "datasets",
+                "dek-abb-1",
+                "exports",
+                "{format}"
+              ]
             }
           ]
         }
@@ -281,6 +335,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

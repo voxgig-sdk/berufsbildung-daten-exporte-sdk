@@ -108,13 +108,25 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/explore/v2.1/catalog/datasets/dek-abb-1/records",
-                ["parts"] = {
-                  "explore",
-                  "v2.1",
-                  "catalog",
-                  "datasets",
-                  "dek-abb-1",
-                  "records",
+                ["segments"] = {
+                  {
+                    ["lit"] = "explore",
+                  },
+                  {
+                    ["lit"] = "v2.1",
+                  },
+                  {
+                    ["lit"] = "catalog",
+                  },
+                  {
+                    ["lit"] = "datasets",
+                  },
+                  {
+                    ["lit"] = "dek-abb-1",
+                  },
+                  {
+                    ["lit"] = "records",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -132,6 +144,14 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.records`",
+                },
+                ["parts"] = {
+                  "explore",
+                  "v2.1",
+                  "catalog",
+                  "datasets",
+                  "dek-abb-1",
+                  "records",
                 },
               },
             },
@@ -202,14 +222,28 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}",
-                ["parts"] = {
-                  "explore",
-                  "v2.1",
-                  "catalog",
-                  "datasets",
-                  "dek-abb-1",
-                  "exports",
-                  "{format}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "explore",
+                  },
+                  {
+                    ["lit"] = "v2.1",
+                  },
+                  {
+                    ["lit"] = "catalog",
+                  },
+                  {
+                    ["lit"] = "datasets",
+                  },
+                  {
+                    ["lit"] = "dek-abb-1",
+                  },
+                  {
+                    ["lit"] = "exports",
+                  },
+                  {
+                    ["var"] = "format",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -226,6 +260,15 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "explore",
+                  "v2.1",
+                  "catalog",
+                  "datasets",
+                  "dek-abb-1",
+                  "exports",
+                  "{format}",
                 },
               },
             },

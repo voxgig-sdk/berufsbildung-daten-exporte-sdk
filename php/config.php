@@ -134,13 +134,25 @@ class BerufsbildungDatenExporteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/explore/v2.1/catalog/datasets/dek-abb-1/records',
-                  'parts' => [
-                    'explore',
-                    'v2.1',
-                    'catalog',
-                    'datasets',
-                    'dek-abb-1',
-                    'records',
+                  'segments' => [
+                    [
+                      'lit' => 'explore',
+                    ],
+                    [
+                      'lit' => 'v2.1',
+                    ],
+                    [
+                      'lit' => 'catalog',
+                    ],
+                    [
+                      'lit' => 'datasets',
+                    ],
+                    [
+                      'lit' => 'dek-abb-1',
+                    ],
+                    [
+                      'lit' => 'records',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -158,6 +170,14 @@ class BerufsbildungDatenExporteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.records`',
+                  ],
+                  'parts' => [
+                    'explore',
+                    'v2.1',
+                    'catalog',
+                    'datasets',
+                    'dek-abb-1',
+                    'records',
                   ],
                 ],
               ],
@@ -228,14 +248,28 @@ class BerufsbildungDatenExporteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}',
-                  'parts' => [
-                    'explore',
-                    'v2.1',
-                    'catalog',
-                    'datasets',
-                    'dek-abb-1',
-                    'exports',
-                    '{format}',
+                  'segments' => [
+                    [
+                      'lit' => 'explore',
+                    ],
+                    [
+                      'lit' => 'v2.1',
+                    ],
+                    [
+                      'lit' => 'catalog',
+                    ],
+                    [
+                      'lit' => 'datasets',
+                    ],
+                    [
+                      'lit' => 'dek-abb-1',
+                    ],
+                    [
+                      'lit' => 'exports',
+                    ],
+                    [
+                      'var' => 'format',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -252,6 +286,15 @@ class BerufsbildungDatenExporteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'explore',
+                    'v2.1',
+                    'catalog',
+                    'datasets',
+                    'dek-abb-1',
+                    'exports',
+                    '{format}',
                   ],
                 ],
               ],
