@@ -105,7 +105,7 @@ local results, err = client:Berufsbildung():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
+| TypeScript | `@voxgig-sdk/berufsbildung-daten-exporte-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
 | Python | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
 | PHP | `voxgig-sdk/berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go` | `go get github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Berufsbildung():list()
 ### TypeScript
 
 ```ts
-import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte'
+import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte-sdk'
 
 const client = new BerufsbildungDatenExporteSDK()
 

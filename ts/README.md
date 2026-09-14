@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte'
+import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte-sdk'
 
 const client = new BerufsbildungDatenExporteSDK()
 ```
@@ -428,7 +428,7 @@ berufsbildung-daten-exporte/
 Import the SDK from the package root:
 
 ```ts
-import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte'
+import { BerufsbildungDatenExporteSDK } from '@voxgig-sdk/berufsbildung-daten-exporte-sdk'
 ```
 
 ### Entity state
