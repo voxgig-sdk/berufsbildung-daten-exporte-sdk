@@ -1,12 +1,18 @@
 # BerufsbildungDatenExporte SDK feature factory
 
 from berufsbildungdatenexporte_sdk.feature.base_feature import BerufsbildungDatenExporteBaseFeature
+from berufsbildungdatenexporte_sdk.feature.ratelimit_feature import BerufsbildungDatenExporteRatelimitFeature
+from berufsbildungdatenexporte_sdk.feature.retry_feature import BerufsbildungDatenExporteRetryFeature
 from berufsbildungdatenexporte_sdk.feature.test_feature import BerufsbildungDatenExporteTestFeature
+from berufsbildungdatenexporte_sdk.feature.timeout_feature import BerufsbildungDatenExporteTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: BerufsbildungDatenExporteBaseFeature(),
+    "ratelimit": lambda: BerufsbildungDatenExporteRatelimitFeature(),
+    "retry": lambda: BerufsbildungDatenExporteRetryFeature(),
     "test": lambda: BerufsbildungDatenExporteTestFeature(),
+    "timeout": lambda: BerufsbildungDatenExporteTimeoutFeature(),
 }
 
 
