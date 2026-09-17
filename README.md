@@ -105,12 +105,12 @@ local results, err = client:Berufsbildung():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/berufsbildung-daten-exporte-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
-| Python | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
-| PHP | `voxgig-sdk/berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
+| TypeScript | `@voxgig-sdk/berufsbildung-daten-exporte-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/tags) |
+| Python | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/tags) |
+| PHP | `voxgig-sdk/berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go` | `go get github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go@latest` |
-| Ruby | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
-| Lua | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/releases) |
+| Ruby | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/tags) |
+| Lua | `voxgig-sdk-berufsbildung-daten-exporte` | publish pending — [install from git tag](https://github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go-cli` | `go install github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go-cli/cmd/berufsbildung-daten-exporte@latest` |
 | Go MCP server | `github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go-mcp` | `go get github.com/voxgig-sdk/berufsbildung-daten-exporte-sdk/go-mcp@latest` |
 
