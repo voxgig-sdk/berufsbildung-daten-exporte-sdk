@@ -115,7 +115,7 @@ function berufsbildung_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["berufsbildung01", "berufsbildung02", "berufsbildung03", "export01", "export02", "export03"] as $k) {
+    foreach (["berufsbildung01", "berufsbildung02", "berufsbildung03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

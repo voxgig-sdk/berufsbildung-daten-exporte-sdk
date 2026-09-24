@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,6 +107,7 @@ class Config {
             "fields": [
                 {
                     "name": "record",
+                    "title": "Record",
                     "type": "`$OBJECT`"
                 }
             ],
@@ -124,68 +118,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "exclude",
-                                        "orig": "exclude",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "de",
-                                        "kind": "query",
-                                        "name": "lang",
-                                        "orig": "lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "offset",
-                                        "orig": "offset",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "order_by",
-                                        "orig": "order_by",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "refine",
-                                        "orig": "refine",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "select",
-                                        "orig": "select",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "UTC",
-                                        "kind": "query",
-                                        "name": "timezone",
-                                        "orig": "timezone",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "where",
-                                        "orig": "where",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/explore/v2.1/catalog/datasets/dek-abb-1/records",
@@ -209,6 +141,81 @@ class Config {
                                     "lit": "records"
                                 }
                             ],
+                            "parts": [
+                                "explore",
+                                "v2.1",
+                                "catalog",
+                                "datasets",
+                                "dek-abb-1",
+                                "records"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.records`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "exclude",
+                                        "orig": "exclude",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "lang",
+                                        "orig": "lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "de"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "offset",
+                                        "orig": "offset",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    },
+                                    {
+                                        "name": "order_by",
+                                        "orig": "order_by",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "refine",
+                                        "orig": "refine",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "select",
+                                        "orig": "select",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "timezone",
+                                        "orig": "timezone",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "UTC"
+                                    },
+                                    {
+                                        "name": "where",
+                                        "orig": "where",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "exclude",
@@ -221,19 +228,7 @@ class Config {
                                     "timezone",
                                     "where"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.records`"
-                            },
-                            "parts": [
-                                "explore",
-                                "v2.1",
-                                "catalog",
-                                "datasets",
-                                "dek-abb-1",
-                                "records"
-                            ]
+                            }
                         }
                     ]
                 },
@@ -242,64 +237,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "kind": "param",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "example": ";",
-                                        "kind": "query",
-                                        "name": "delimiter",
-                                        "orig": "delimiter",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "exclude",
-                                        "orig": "exclude",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "de",
-                                        "kind": "query",
-                                        "name": "lang",
-                                        "orig": "lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "refine",
-                                        "orig": "refine",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "select",
-                                        "orig": "select",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "UTC",
-                                        "kind": "query",
-                                        "name": "timezone",
-                                        "orig": "timezone",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "where",
-                                        "orig": "where",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}",
@@ -326,6 +263,78 @@ class Config {
                                     "var": "format"
                                 }
                             ],
+                            "parts": [
+                                "explore",
+                                "v2.1",
+                                "catalog",
+                                "datasets",
+                                "dek-abb-1",
+                                "exports",
+                                "{format}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "delimiter",
+                                        "orig": "delimiter",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": ";"
+                                    },
+                                    {
+                                        "name": "exclude",
+                                        "orig": "exclude",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "lang",
+                                        "orig": "lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "de"
+                                    },
+                                    {
+                                        "name": "refine",
+                                        "orig": "refine",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "select",
+                                        "orig": "select",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "timezone",
+                                        "orig": "timezone",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "UTC"
+                                    },
+                                    {
+                                        "name": "where",
+                                        "orig": "where",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "delimiter",
@@ -337,30 +346,13 @@ class Config {
                                     "timezone",
                                     "where"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "explore",
-                                "v2.1",
-                                "catalog",
-                                "datasets",
-                                "dek-abb-1",
-                                "exports",
-                                "{format}"
-                            ]
+                            }
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "export"
-                    ]
-                ]
+                "ancestors": []
             }
         }
     };

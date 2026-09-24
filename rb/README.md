@@ -46,8 +46,6 @@ end
 
 ### 3. Load a berufsbildung
 
-Berufsbildung is nested under format, so provide the `format`.
-
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the Berufsbildung record (raises on error).

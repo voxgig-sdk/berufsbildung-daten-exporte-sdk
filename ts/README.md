@@ -49,14 +49,11 @@ for (const berufsbildung of berufsbildungs) {
 
 ### 3. Load a berufsbildung
 
-Berufsbildung is nested under format, so provide the `format`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const berufsbildung = await client.Berufsbildung().load({
-    format: 'example_format',
-  })
+  const berufsbildung = await client.Berufsbildung().load({ format: 'example_format' })
   console.log(berufsbildung)
 } catch (err) {
   console.error('load failed:', err)

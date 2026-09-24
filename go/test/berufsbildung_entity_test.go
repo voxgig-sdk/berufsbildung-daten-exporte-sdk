@@ -158,7 +158,7 @@ func berufsbildungBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"berufsbildung01", "berufsbildung02", "berufsbildung03", "export01", "export02", "export03"},
+		[]any{"berufsbildung01", "berufsbildung02", "berufsbildung03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

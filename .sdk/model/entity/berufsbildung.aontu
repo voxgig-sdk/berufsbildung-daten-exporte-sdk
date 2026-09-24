@@ -1,0 +1,262 @@
+# Entity: berufsbildung
+
+main: kit: entity: berufsbildung: {
+
+  alias: field: {}
+
+  fields: {
+    record: {
+      h: "Record"
+      n: "record"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "berufsbildung"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /explore/v2.1/catalog/datasets/dek-abb-1/records"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "exclude"
+                or: "exclude"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "de"
+                k: "query"
+                n: "lang"
+                or: "lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "order_by"
+                or: "order_by"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine"
+                or: "refine"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "select"
+                or: "select"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "UTC"
+                k: "query"
+                n: "timezone"
+                or: "timezone"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "where"
+                or: "where"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/explore/v2.1/catalog/datasets/dek-abb-1/records"
+          q: {
+            exist: [
+              "exclude"
+              "lang"
+              "limit"
+              "offset"
+              "order_by"
+              "refine"
+              "select"
+              "timezone"
+              "where"
+            ]
+          }
+          s: [
+            {
+              lit: "explore"
+            }
+            {
+              lit: "v2.1"
+            }
+            {
+              lit: "catalog"
+            }
+            {
+              lit: "datasets"
+            }
+            {
+              lit: "dek-abb-1"
+            }
+            {
+              lit: "records"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.records`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "format"
+                or: "format"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: ";"
+                k: "query"
+                n: "delimiter"
+                or: "delimiter"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "exclude"
+                or: "exclude"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "de"
+                k: "query"
+                n: "lang"
+                or: "lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine"
+                or: "refine"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "select"
+                or: "select"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "UTC"
+                k: "query"
+                n: "timezone"
+                or: "timezone"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "where"
+                or: "where"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}"
+          q: {
+            exist: [
+              "delimiter"
+              "exclude"
+              "format"
+              "lang"
+              "refine"
+              "select"
+              "timezone"
+              "where"
+            ]
+          }
+          s: [
+            {
+              lit: "explore"
+            }
+            {
+              lit: "v2.1"
+            }
+            {
+              lit: "catalog"
+            }
+            {
+              lit: "datasets"
+            }
+            {
+              lit: "dek-abb-1"
+            }
+            {
+              lit: "exports"
+            }
+            {
+              var: "format"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

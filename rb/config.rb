@@ -99,6 +99,7 @@ module BerufsbildungDatenExporteConfig
           "fields" => [
             {
               "name" => "record",
+              "title" => "Record",
               "type" => "`$OBJECT`",
             },
           ],
@@ -109,68 +110,6 @@ module BerufsbildungDatenExporteConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "exclude",
-                        "orig" => "exclude",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "lang",
-                        "orig" => "lang",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "limit",
-                        "orig" => "limit",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => 0,
-                        "kind" => "query",
-                        "name" => "offset",
-                        "orig" => "offset",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "order_by",
-                        "orig" => "order_by",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "refine",
-                        "orig" => "refine",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "select",
-                        "orig" => "select",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "UTC",
-                        "kind" => "query",
-                        "name" => "timezone",
-                        "orig" => "timezone",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "where",
-                        "orig" => "where",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/explore/v2.1/catalog/datasets/dek-abb-1/records",
@@ -194,6 +133,81 @@ module BerufsbildungDatenExporteConfig
                       "lit" => "records",
                     },
                   ],
+                  "parts" => [
+                    "explore",
+                    "v2.1",
+                    "catalog",
+                    "datasets",
+                    "dek-abb-1",
+                    "records",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.records`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "exclude",
+                        "orig" => "exclude",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "lang",
+                        "orig" => "lang",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "offset",
+                        "orig" => "offset",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 0,
+                      },
+                      {
+                        "name" => "order_by",
+                        "orig" => "order_by",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "refine",
+                        "orig" => "refine",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "select",
+                        "orig" => "select",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "timezone",
+                        "orig" => "timezone",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "UTC",
+                      },
+                      {
+                        "name" => "where",
+                        "orig" => "where",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "exclude",
@@ -207,18 +221,6 @@ module BerufsbildungDatenExporteConfig
                       "where",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.records`",
-                  },
-                  "parts" => [
-                    "explore",
-                    "v2.1",
-                    "catalog",
-                    "datasets",
-                    "dek-abb-1",
-                    "records",
-                  ],
                 },
               ],
             },
@@ -227,64 +229,6 @@ module BerufsbildungDatenExporteConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "kind" => "param",
-                        "name" => "format",
-                        "orig" => "format",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                    "query" => [
-                      {
-                        "example" => ";",
-                        "kind" => "query",
-                        "name" => "delimiter",
-                        "orig" => "delimiter",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "exclude",
-                        "orig" => "exclude",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "lang",
-                        "orig" => "lang",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "refine",
-                        "orig" => "refine",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "select",
-                        "orig" => "select",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "UTC",
-                        "kind" => "query",
-                        "name" => "timezone",
-                        "orig" => "timezone",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "where",
-                        "orig" => "where",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}",
@@ -311,6 +255,78 @@ module BerufsbildungDatenExporteConfig
                       "var" => "format",
                     },
                   ],
+                  "parts" => [
+                    "explore",
+                    "v2.1",
+                    "catalog",
+                    "datasets",
+                    "dek-abb-1",
+                    "exports",
+                    "{format}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                      },
+                    ],
+                    "query" => [
+                      {
+                        "name" => "delimiter",
+                        "orig" => "delimiter",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => ";",
+                      },
+                      {
+                        "name" => "exclude",
+                        "orig" => "exclude",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "lang",
+                        "orig" => "lang",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "refine",
+                        "orig" => "refine",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "select",
+                        "orig" => "select",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "timezone",
+                        "orig" => "timezone",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "UTC",
+                      },
+                      {
+                        "name" => "where",
+                        "orig" => "where",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "delimiter",
@@ -323,29 +339,12 @@ module BerufsbildungDatenExporteConfig
                       "where",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "explore",
-                    "v2.1",
-                    "catalog",
-                    "datasets",
-                    "dek-abb-1",
-                    "exports",
-                    "{format}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "export",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

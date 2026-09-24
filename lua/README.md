@@ -43,13 +43,11 @@ local berufsbildungs, err = client:Berufsbildung():list()
 if err then error(err) end
 
 for _, item in ipairs(berufsbildungs) do
-  print(item["record"])
+  print(item)
 end
 ```
 
 ### 3. Load a berufsbildung
-
-Berufsbildung is nested under format, so provide the `format`.
 
 ```lua
 local berufsbildung, err = client:Berufsbildung():load({ format = "example_format" })

@@ -52,7 +52,6 @@ except Exception as err:
 
 ### 3. Load a berufsbildung
 
-Berufsbildung is nested under format, so provide the `format`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python

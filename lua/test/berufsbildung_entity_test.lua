@@ -120,7 +120,7 @@ function berufsbildung_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "berufsbildung01", "berufsbildung02", "berufsbildung03", "export01", "export02", "export03" },
+    { "berufsbildung01", "berufsbildung02", "berufsbildung03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

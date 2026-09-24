@@ -48,8 +48,6 @@ try {
 
 ### 3. Load a berufsbildung
 
-Berufsbildung is nested under format, so provide the `format`.
-
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Berufsbildung record (throws on error).
