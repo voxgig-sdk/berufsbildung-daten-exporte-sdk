@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 BerufsbildungDatenExporteUtility.registrar = ->(u) {
   u.clean = BerufsbildungDatenExporteUtilities::Clean
+  u.clean_add = BerufsbildungDatenExporteUtilities::CleanAdd
+  u.clean_explain = BerufsbildungDatenExporteUtilities::CleanExplain
   u.done = BerufsbildungDatenExporteUtilities::Done
   u.make_error = BerufsbildungDatenExporteUtilities::MakeError
   u.feature_add = BerufsbildungDatenExporteUtilities::FeatureAdd

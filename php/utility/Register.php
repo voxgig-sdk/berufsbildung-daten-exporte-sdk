@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 BerufsbildungDatenExporteUtility::setRegistrar(function (BerufsbildungDatenExporteUtility $u): void {
     $u->clean = [BerufsbildungDatenExporteClean::class, 'call'];
+    $u->clean_add = [BerufsbildungDatenExporteClean::class, 'add'];
+    $u->clean_explain = [BerufsbildungDatenExporteDone::class, 'clean_explain'];
     $u->done = [BerufsbildungDatenExporteDone::class, 'call'];
     $u->make_error = [BerufsbildungDatenExporteMakeError::class, 'call'];
     $u->feature_add = [BerufsbildungDatenExporteFeatureAdd::class, 'call'];
