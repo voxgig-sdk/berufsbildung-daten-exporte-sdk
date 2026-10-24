@@ -17,16 +17,20 @@ const PLAN: any[] = [
     "args": [],
     "select": {
       "exclude": "v1",
-      "lang": "v1",
-      "limit": "v1",
-      "offset": "v1",
+      "lang": "de",
+      "limit": 10,
+      "offset": 0,
       "order_by": "v1",
       "refine": "v1",
       "select": "v1",
-      "timezone": "v1",
+      "timezone": "UTC",
       "where": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "select",
       "where",
@@ -38,6 +42,44 @@ const PLAN: any[] = [
       "lang",
       "timezone"
     ],
+    "queryArgs": [
+      {
+        "name": "exclude",
+        "wire": "exclude"
+      },
+      {
+        "name": "lang",
+        "wire": "lang"
+      },
+      {
+        "name": "limit",
+        "wire": "limit"
+      },
+      {
+        "name": "offset",
+        "wire": "offset"
+      },
+      {
+        "name": "order_by",
+        "wire": "order_by"
+      },
+      {
+        "name": "refine",
+        "wire": "refine"
+      },
+      {
+        "name": "select",
+        "wire": "select"
+      },
+      {
+        "name": "timezone",
+        "wire": "timezone"
+      },
+      {
+        "name": "where",
+        "wire": "where"
+      }
+    ],
     "auth": null,
     "status": 200,
     "sample": {
@@ -45,19 +87,19 @@ const PLAN: any[] = [
       "records": [
         {
           "record": {
+            "id": "x",
+            "timestamp": "2026-01-01T00:00:00Z",
             "fields": {
-              "abschluesse_qualifikationsverfahren": 1,
-              "anzahl_lehrvertraege_total": 1,
-              "attestausweise": 1,
+              "jahr": 1,
               "ausbildungsfeld": "x",
+              "anzahl_lehrvertraege_total": 1,
+              "neu_registrierte_lehrvertraege": 1,
+              "abschluesse_qualifikationsverfahren": 1,
+              "repetenten": 1,
               "durchgefuehrte_qualifikationsverfahren": 1,
               "faehigkeitsausweise": 1,
-              "jahr": 1,
-              "neu_registrierte_lehrvertraege": 1,
-              "repetenten": 1
-            },
-            "id": "x",
-            "timestamp": "2026-01-01T00:00:00Z"
+              "attestausweise": 1
+            }
           }
         }
       ]
@@ -78,15 +120,22 @@ const PLAN: any[] = [
       }
     ],
     "select": {
-      "delimiter": "v1",
+      "delimiter": ";",
       "exclude": "v1",
-      "lang": "v1",
+      "lang": "de",
       "refine": "v1",
       "select": "v1",
-      "timezone": "v1",
+      "timezone": "UTC",
       "where": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "text/csv",
+      "application/json",
+      "application/vnd.ms-excel",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ],
     "query": [
       "select",
       "where",
@@ -95,6 +144,36 @@ const PLAN: any[] = [
       "lang",
       "delimiter",
       "timezone"
+    ],
+    "queryArgs": [
+      {
+        "name": "delimiter",
+        "wire": "delimiter"
+      },
+      {
+        "name": "exclude",
+        "wire": "exclude"
+      },
+      {
+        "name": "lang",
+        "wire": "lang"
+      },
+      {
+        "name": "refine",
+        "wire": "refine"
+      },
+      {
+        "name": "select",
+        "wire": "select"
+      },
+      {
+        "name": "timezone",
+        "wire": "timezone"
+      },
+      {
+        "name": "where",
+        "wire": "where"
+      }
     ],
     "auth": null,
     "status": 200,

@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -225,18 +226,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "exclude",
-                    "lang",
-                    "limit",
-                    "offset",
-                    "order_by",
-                    "refine",
-                    "select",
-                    "timezone",
-                    "where",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -346,15 +339,28 @@ def make_config():
                 },
                 "select": {
                   "exist": [
-                    "delimiter",
-                    "exclude",
                     "format",
-                    "lang",
-                    "refine",
-                    "select",
-                    "timezone",
-                    "where",
                   ],
+                },
+                "response": {
+                  "alternatives": [
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "application/vnd.ms-excel",
+                    },
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/csv",
+                    },
+                  ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

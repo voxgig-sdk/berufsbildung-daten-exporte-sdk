@@ -97,18 +97,9 @@ main: kit: entity: berufsbildung: {
           }
           m: "GET"
           o: "/explore/v2.1/catalog/datasets/dek-abb-1/records"
-          q: {
-            exist: [
-              "exclude"
-              "lang"
-              "limit"
-              "offset"
-              "order_by"
-              "refine"
-              "select"
-              "timezone"
-              "where"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -215,15 +206,28 @@ main: kit: entity: berufsbildung: {
           o: "/explore/v2.1/catalog/datasets/dek-abb-1/exports/{format}"
           q: {
             exist: [
-              "delimiter"
-              "exclude"
               "format"
-              "lang"
-              "refine"
-              "select"
-              "timezone"
-              "where"
             ]
+          }
+          rs: {
+            alternatives: [
+              {
+                binary: true
+                kind: "raw"
+                media: "application/vnd.ms-excel"
+              }
+              {
+                binary: true
+                kind: "raw"
+                media: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              }
+              {
+                kind: "raw"
+                media: "text/csv"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // BerufsbildungDatenExporte SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class BerufsbildungDatenExportePrepareBody
 {
     public static function call(BerufsbildungDatenExporteContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (BerufsbildungDatenExporteMedia::isRawRequest($ctx->point)) {
+                return BerufsbildungDatenExporteMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

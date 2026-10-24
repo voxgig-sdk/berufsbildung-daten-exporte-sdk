@@ -93,6 +93,7 @@ class BerufsbildungDatenExporteConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -222,18 +223,10 @@ class BerufsbildungDatenExporteConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'exclude',
-                      'lang',
-                      'limit',
-                      'offset',
-                      'order_by',
-                      'refine',
-                      'select',
-                      'timezone',
-                      'where',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -343,15 +336,28 @@ class BerufsbildungDatenExporteConfig
                   ],
                   'select' => [
                     'exist' => [
-                      'delimiter',
-                      'exclude',
                       'format',
-                      'lang',
-                      'refine',
-                      'select',
-                      'timezone',
-                      'where',
                     ],
+                  ],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/vnd.ms-excel',
+                      ],
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'text/csv',
+                      ],
+                    ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

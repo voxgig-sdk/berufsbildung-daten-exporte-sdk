@@ -12,6 +12,8 @@ type BerufsbildungDatenExporteError struct {
 	Ctx    *Context `json:"-"`
 	Result any
 	Spec   any
+	// The HTTP status, -1 when there was no response.
+	Status int
 }
 
 func NewBerufsbildungDatenExporteError(code string, msg string, ctx *Context) *BerufsbildungDatenExporteError {
@@ -21,7 +23,12 @@ func NewBerufsbildungDatenExporteError(code string, msg string, ctx *Context) *B
 		Code:               code,
 		Msg:                msg,
 		Ctx:                ctx,
+		Status:             -1,
 	}
+}
+
+func (e *BerufsbildungDatenExporteError) NotFound() bool {
+	return 404 == e.Status
 }
 
 func (e *BerufsbildungDatenExporteError) Error() string {
@@ -35,6 +42,7 @@ func (e *BerufsbildungDatenExporteError) Record() map[string]any {
 		"sdk":     e.Sdk,
 		"code":    e.Code,
 		"message": e.Msg,
+		"status":  e.Status,
 		"result":  e.Result,
 		"spec":    e.Spec,
 	}
